@@ -10,6 +10,7 @@ using System.Linq;
 using Core.Comm;
 using System.Net;
 using System.Threading.Tasks;
+using System.ComponentModel.Design;
 
 namespace Core
 {
@@ -467,8 +468,8 @@ namespace Core
 
             #region 缩减词库
             //Dictionary<string, long> blcp = new Dictionary<string, long>();
-            //Dictionary<string, long> blcp1 = new Dictionary<string, long>();
-            //var blc = File.ReadAllText(@"C:\Users\Administrator\Desktop\srkmm\空明码词组36万.txt", Encoding.UTF8).Replace("\r\n", "\n").Split('\n');
+     
+            //var blc = File.ReadAllText(@"D:\work\srkmm\10万词频表.txt", Encoding.UTF8).Replace("\r\n", "\n").Split('\n');
             //foreach (var item in blc)
             //{
             //    if (string.IsNullOrEmpty(item)) continue;
@@ -479,7 +480,7 @@ namespace Core
             //    if (!blcp.ContainsKey(txt))
             //    {
             //        blcp.Add(txt, 0);
-            //        blcp1.Add(txt, 0);
+                   
             //    }
             //}
             //blc = File.ReadAllText(@"D:\soft\office\词库\矧码词.txt", Encoding.UTF8).Replace("\r\n", "\n").Split('\n');
@@ -501,8 +502,9 @@ namespace Core
             //foreach (var item in bigc)
             //{
             //    bool cl = true;
-            //    if (string.IsNullOrEmpty(item) || item.Trim()=="") continue;
             //    string txt = item.Split(' ')[0];
+            //    if (string.IsNullOrEmpty(item) || item.Trim() == "" || txt.Length > 4) continue;
+               
 
             //    if (txt.Length < 4) cl = false;
             //    if (item.Split(' ').Length == 2 && txt.Length < 5) cl = false;
@@ -520,7 +522,7 @@ namespace Core
             //        if (txt.Length > 4)
             //        {
 
-            //            for (int i = 1; i < item.Split(' ').Length && i < 4; i++)
+            //            for (int i = 1; i < item.Split(' ').Length; i++)
             //            {
             //                if (blcp.ContainsKey(item.Split(' ')[i]))
             //                    item1 += " " + item.Split(' ')[i];
@@ -529,7 +531,7 @@ namespace Core
             //        else
             //        {
             //            item1 += " " + item.Split(' ')[1];
-            //            for (int i = 2; i < item.Split(' ').Length && i < 7; i++)
+            //            for (int i = 2; i < item.Split(' ').Length; i++)
             //            {
             //                if (blcp.ContainsKey(item.Split(' ')[i]))
             //                    item1 += " " + item.Split(' ')[i];
@@ -547,7 +549,7 @@ namespace Core
             //        ssb.Append(item + "\n");
             //        string item1 = "";
 
-            //        for (int i = 1; i < item.Split(' ').Length && i < 7; i++)
+            //        for (int i = 1; i < item.Split(' ').Length; i++)
             //        {
             //            if (blcp.ContainsKey(item.Split(' ')[i]))
             //                item1 += " " + item.Split(' ')[i];
@@ -558,6 +560,10 @@ namespace Core
             //        if (item1.Length > 0)
             //        {
             //            ssb1.Append(txt + " " + item1 + "\n");
+            //        }
+            //        else if(item.Split(' ').Length > 1)
+            //        {
+            //            ssb1.Append(txt + " " + item.Split(' ')[1] + "\n");
             //        }
             //    }
             //}
