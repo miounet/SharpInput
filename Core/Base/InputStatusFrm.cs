@@ -11,6 +11,7 @@ namespace Core.Base
     public class InputStatusFrm:System.Windows.Forms.Form
     {
         public string inputstr = string.Empty;//当前的
+        public string pinputstr = string.Empty;//前一次
         public string input = string.Empty;//本次输入的码元
         public static string zdzjstr = string.Empty;//
                                                     //句
@@ -559,7 +560,7 @@ namespace Core.Base
         public void ShangPing(int pos, int index = 0, bool clear = true,string end="")
         {
             pinyipos = 0;
-
+            this.pinputstr = this.inputstr;
             int tpos = pos != 0 ? pos - 1 : pos;
             if (InputStatusFrm.cachearry == null ||
                 (InputStatusFrm.cachearry.Length > 0 && string.IsNullOrEmpty(InputStatusFrm.cachearry[0])))

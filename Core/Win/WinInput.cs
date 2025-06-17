@@ -1241,18 +1241,10 @@ namespace Core.Win
                    
                     if (keychar.Length > 0 && "1234567890".IndexOf(keychar) >= 0)
                     {
-                        string lastinput = InputStatus.inputstr;
+    
                         //数字选重
                         InputStatus.ShangPing(int.Parse(keychar));
-                        if (InputMode.tautopos && lastinput.Length > 2)
-                        {
-                            Task us = new Task(() =>
-                            {
-                                Input.UpdatePos(lastinput, int.Parse(keychar), InputStatus.PageNum, InputStatus.PageSize);
-                            });
-                            us.Start();
-
-                        }
+ 
                         return -1;
                     }
                     else if (key == Keys.LShiftKey)
@@ -1609,14 +1601,32 @@ namespace Core.Win
                     || srinput.IndexOf("4i") == 0 || srinput.IndexOf("5i") == 0 || srinput.IndexOf("6i") == 0 || srinput.IndexOf("7i") == 0
                    || srinput.IndexOf("8i") == 0 || srinput.IndexOf("9i") == 0 || srinput.IndexOf("0i") == 0))
                 {
-
+                    string lastinput = InputStatus.pinputstr;
                     InputStatus.ShangPing(int.Parse(srinput.Substring(0, 1)), InputStatusFrm.Dream ? InputStatusFrm.LastLinkString.Length : 0);
+                    if (InputMode.tautopos && lastinput.Length > 2)
+                    {
+                        Task us = new Task(() =>
+                        {
+                            Input.UpdatePos(lastinput, int.Parse(srinput.Substring(0, 1)), InputStatus.PageNum, InputStatus.PageSize);
+                        });
+                        us.Start();
+
+                    }
                     return;
                 }
                 else if (InputMode.iselect && srinput.IndexOf(">") >= 0)
                 {
+                    string lastinput = InputStatus.pinputstr;
                     InputStatus.ShangPing(int.Parse(srinput.Substring(1, 1)), InputStatusFrm.Dream ? InputStatusFrm.LastLinkString.Length : 0);
+                    if (InputMode.tautopos && lastinput.Length > 2)
+                    {
+                        Task us = new Task(() =>
+                        {
+                            Input.UpdatePos(lastinput, int.Parse(srinput.Substring(1, 1)), InputStatus.PageNum, InputStatus.PageSize);
+                        });
+                        us.Start();
 
+                    }
                     return;
                 }
                 if (allNum || (InputStatusFrm.LastLinkNum.Length > 0 && srinput == "."))
