@@ -49,6 +49,7 @@ namespace Core.Win
             InputMode.pinyin = this.ckpinyin.Checked;
             InputMode.closebj = this.chclosebj.Checked;
             InputMode.autopos = this.ckautopos.Checked;
+            InputMode.tautopos = this.cktautopos.Checked;
             InputMode.bjzckgsp = this.chkbjzckgsp.Checked;
             InputMode.omeno = this.chkomeno.Checked;
             InputMode.zsallmap = this.chkzsallmap.Checked;
@@ -102,6 +103,7 @@ namespace Core.Win
             this.ckpinyin.Checked = InputMode.pinyin;
             this.chclosebj.Checked = InputMode.closebj;
             this.ckautopos.Checked = InputMode.autopos;
+            this.cktautopos.Checked = InputMode.tautopos;
             this.chkbjzckgsp.Checked = InputMode.bjzckgsp;
             this.chkomeno.Checked = InputMode.omeno;
             this.chkzsallmap.Checked = InputMode.zsallmap;

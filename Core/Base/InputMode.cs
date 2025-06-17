@@ -144,6 +144,7 @@ namespace Core.Base
         public static bool pinyin = false;//显示拼音提示
         public static bool closebj = false;//关闭并击模式，只使用串击/连击
         public static bool autopos = false;//数字选码自动调频
+        public static bool tautopos = true;//临时调频
         public static short autoup = 3;//几码强制上屏
         public static string stopup = "";//什么打头字母不自动上屏
         public static bool bjzckgsp = false;//速录助手时1、3码不自动上屏，需要空格确认上屏

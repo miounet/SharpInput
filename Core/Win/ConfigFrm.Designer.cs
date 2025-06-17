@@ -54,6 +54,7 @@
             this.ckOpenCould = new System.Windows.Forms.CheckBox();
             this.ckalt = new System.Windows.Forms.CheckBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.SkinBack = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.btnSkinFontName = new System.Windows.Forms.Button();
@@ -91,7 +92,7 @@
             this.cheuseregular = new System.Windows.Forms.CheckBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.SkinBack = new System.Windows.Forms.Button();
+            this.cktautopos = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nuzsmode2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.selectnum)).BeginInit();
@@ -101,6 +102,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.cktautopos);
             this.groupBox1.Controls.Add(this.chimghh);
             this.groupBox1.Controls.Add(this.mousetracchk);
             this.groupBox1.Controls.Add(this.chedatacf);
@@ -137,7 +139,7 @@
             // 
             this.chimghh.AutoSize = true;
             this.chimghh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chimghh.Location = new System.Drawing.Point(542, 85);
+            this.chimghh.Location = new System.Drawing.Point(545, 85);
             this.chimghh.Margin = new System.Windows.Forms.Padding(4);
             this.chimghh.Name = "chimghh";
             this.chimghh.Size = new System.Drawing.Size(87, 20);
@@ -177,21 +179,21 @@
             "默认",
             "剪贴板",
             "嵌入式"});
-            this.cmouttype.Location = new System.Drawing.Point(436, 84);
+            this.cmouttype.Location = new System.Drawing.Point(453, 84);
             this.cmouttype.Name = "cmouttype";
-            this.cmouttype.Size = new System.Drawing.Size(90, 24);
+            this.cmouttype.Size = new System.Drawing.Size(73, 24);
             this.cmouttype.TabIndex = 33;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label10.Location = new System.Drawing.Point(348, 88);
+            this.label10.Location = new System.Drawing.Point(404, 88);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(77, 14);
+            this.label10.Size = new System.Drawing.Size(42, 14);
             this.label10.TabIndex = 32;
-            this.label10.Text = "输出模式：";
+            this.label10.Text = "模式:";
             // 
             // label9
             // 
@@ -257,12 +259,12 @@
             // 
             this.ckautopos.AutoSize = true;
             this.ckautopos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ckautopos.Location = new System.Drawing.Point(184, 84);
+            this.ckautopos.Location = new System.Drawing.Point(175, 84);
             this.ckautopos.Margin = new System.Windows.Forms.Padding(4);
             this.ckautopos.Name = "ckautopos";
-            this.ckautopos.Size = new System.Drawing.Size(151, 20);
+            this.ckautopos.Size = new System.Drawing.Size(119, 20);
             this.ckautopos.TabIndex = 25;
-            this.ckautopos.Text = "数字选码自动调频";
+            this.ckautopos.Text = "数字选码调频";
             this.ckautopos.UseVisualStyleBackColor = true;
             // 
             // chclosebj
@@ -442,6 +444,19 @@
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "字体大小设置";
+            // 
+            // SkinBack
+            // 
+            this.SkinBack.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.SkinBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SkinBack.Location = new System.Drawing.Point(279, 59);
+            this.SkinBack.Margin = new System.Windows.Forms.Padding(4);
+            this.SkinBack.Name = "SkinBack";
+            this.SkinBack.Size = new System.Drawing.Size(65, 31);
+            this.SkinBack.TabIndex = 35;
+            this.SkinBack.Text = "背景";
+            this.SkinBack.UseVisualStyleBackColor = false;
+            this.SkinBack.Click += new System.EventHandler(this.SkinBack_Click);
             // 
             // label11
             // 
@@ -875,18 +890,17 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // SkinBack
+            // cktautopos
             // 
-            this.SkinBack.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.SkinBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SkinBack.Location = new System.Drawing.Point(279, 59);
-            this.SkinBack.Margin = new System.Windows.Forms.Padding(4);
-            this.SkinBack.Name = "SkinBack";
-            this.SkinBack.Size = new System.Drawing.Size(65, 31);
-            this.SkinBack.TabIndex = 35;
-            this.SkinBack.Text = "背景";
-            this.SkinBack.UseVisualStyleBackColor = false;
-            this.SkinBack.Click += new System.EventHandler(this.SkinBack_Click);
+            this.cktautopos.AutoSize = true;
+            this.cktautopos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cktautopos.Location = new System.Drawing.Point(305, 84);
+            this.cktautopos.Margin = new System.Windows.Forms.Padding(4);
+            this.cktautopos.Name = "cktautopos";
+            this.cktautopos.Size = new System.Drawing.Size(87, 20);
+            this.cktautopos.TabIndex = 37;
+            this.cktautopos.Text = "临时调频";
+            this.cktautopos.UseVisualStyleBackColor = true;
             // 
             // ConfigFrm
             // 
@@ -1011,5 +1025,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button SkinBack;
+        private System.Windows.Forms.CheckBox cktautopos;
     }
 }

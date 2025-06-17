@@ -293,6 +293,7 @@ namespace Core.Win
             InputMode.pinyin = string.IsNullOrEmpty(SetInfo.GetValue("pinyin", setting)) ? false : bool.Parse(SetInfo.GetValue("pinyin", setting));
             InputMode.closebj = string.IsNullOrEmpty(SetInfo.GetValue("closebj", setting)) ? false : bool.Parse(SetInfo.GetValue("closebj", setting));
             InputMode.autopos = string.IsNullOrEmpty(SetInfo.GetValue("autopos", setting)) ? false : bool.Parse(SetInfo.GetValue("autopos", setting));
+            InputMode.tautopos = string.IsNullOrEmpty(SetInfo.GetValue("tautopos", setting)) ? false : bool.Parse(SetInfo.GetValue("tautopos", setting));
             InputMode.bjzckgsp = string.IsNullOrEmpty(SetInfo.GetValue("bjzckgsp", setting)) ? false : bool.Parse(SetInfo.GetValue("bjzckgsp", setting));
             InputMode.omeno = string.IsNullOrEmpty(SetInfo.GetValue("omeno", setting)) ? false : bool.Parse(SetInfo.GetValue("omeno", setting));
             InputMode.zsallmap = string.IsNullOrEmpty(SetInfo.GetValue("zsallmap", setting)) ? false : bool.Parse(SetInfo.GetValue("zsallmap", setting));
@@ -442,6 +443,7 @@ namespace Core.Win
             set.Add("pinyin=" + InputMode.pinyin.ToString());
             set.Add("closebj=" + InputMode.closebj.ToString());
             set.Add("autopos=" + InputMode.autopos.ToString());
+            set.Add("tautopos=" + InputMode.tautopos.ToString());
             set.Add("bjzckgsp=" + InputMode.bjzckgsp.ToString());
             set.Add("omeno=" + InputMode.omeno.ToString());
             set.Add("zsallmap=" + InputMode.zsallmap.ToString());
@@ -1013,28 +1015,64 @@ namespace Core.Win
 
                         if (InputStatus.inputstr.Length > 0 || InputStatusFrm.Dream)
                         {
+                            string lastinput = InputStatus.inputstr;
                             if (keyData == Keys.LShiftKey)
                             {
                                 //左shift ,选2上屏
                                 InputStatus.ShangPing(2, InputStatusFrm.Dream ? InputStatusFrm.LastLinkString.Length : 0);
+                                if (InputMode.tautopos && lastinput.Length > 2)
+                                {
+                                    Task us = new Task(() =>
+                                    {
+                                        Input.UpdatePos(lastinput, 2, InputStatus.PageNum, InputStatus.PageSize);
+                                    });
+                                    us.Start();
 
+                                }
                             }
                             else if (keyData == Keys.RShiftKey)
                             {
                                 //左shift ,选3上屏
                                 InputStatus.ShangPing(3, InputStatusFrm.Dream ? InputStatusFrm.LastLinkString.Length : 0);
+                                if (InputMode.tautopos && lastinput.Length > 2)
+                                {
+                                    Task us = new Task(() =>
+                                    {
+                                        Input.UpdatePos(lastinput, 3, InputStatus.PageNum, InputStatus.PageSize);
+                                    });
+                                    us.Start();
+
+                                }
 
                             }
                             else if (keyData == Keys.LControlKey)
                             {
                                 //左control ,选6上屏
                                 InputStatus.ShangPing(6, InputStatusFrm.Dream ? InputStatusFrm.LastLinkString.Length : 0);
+                                if (InputMode.tautopos && lastinput.Length > 2)
+                                {
+                                    Task us = new Task(() =>
+                                    {
+                                        Input.UpdatePos(lastinput, 6, InputStatus.PageNum, InputStatus.PageSize);
+                                    });
+                                    us.Start();
+
+                                }
 
                             }
                             else if (keyData == Keys.RControlKey)
                             {
                                 //右左control ,选7上屏
                                 InputStatus.ShangPing(7, InputStatusFrm.Dream ? InputStatusFrm.LastLinkString.Length : 0);
+                                if (InputMode.tautopos && lastinput.Length > 2)
+                                {
+                                    Task us = new Task(() =>
+                                    {
+                                        Input.UpdatePos(lastinput, 7, InputStatus.PageNum, InputStatus.PageSize);
+                                    });
+                                    us.Start();
+
+                                }
 
                             }
 
@@ -1200,11 +1238,21 @@ namespace Core.Win
             {
                 if (InputStatus.inputstr.Length > 0)
                 {
-
+                   
                     if (keychar.Length > 0 && "1234567890".IndexOf(keychar) >= 0)
                     {
+                        string lastinput = InputStatus.inputstr;
                         //数字选重
                         InputStatus.ShangPing(int.Parse(keychar));
+                        if (InputMode.tautopos && lastinput.Length > 2)
+                        {
+                            Task us = new Task(() =>
+                            {
+                                Input.UpdatePos(lastinput, int.Parse(keychar), InputStatus.PageNum, InputStatus.PageSize);
+                            });
+                            us.Start();
+
+                        }
                         return -1;
                     }
                     else if (key == Keys.LShiftKey)
