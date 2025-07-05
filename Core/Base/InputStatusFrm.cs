@@ -41,6 +41,7 @@ namespace Core.Base
         /// 最近汉字数组
         /// </summary>
         public string[] valuearry;
+
         /// <summary>
         /// 本屏显示的汉字
         /// </summary>
@@ -1343,7 +1344,8 @@ namespace Core.Base
             // InputStatusFrm
             // 
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(175, 133);
+            this.ClientSize = new System.Drawing.Size(343, 31);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "InputStatusFrm";
             this.Load += new System.EventHandler(this.InputStatusFrm_Load);
             this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.InputStatusFrm_MouseClick);
@@ -1399,25 +1401,40 @@ namespace Core.Base
         string pys = "";
         string cfs = "";
         public string s2t = "";
+        private int viewnum = 0;
+        BufferedGraphicsContext context = BufferedGraphicsManager.Current;
+        public Dictionary<int, BufferedGraphics> buffgr = new Dictionary<int, BufferedGraphics>();
+        private BufferedGraphics getBufferedGraphics(int key, PaintEventArgs e)
+        {
+            if (buffgr.ContainsKey(key))
+                return buffgr[key];
+            else
+            {
+                var gr= context.Allocate(e.Graphics, new Rectangle(0, 0, Width, Height));
+                buffgr.Add(key, gr);
+                return buffgr[key];
+            }
+        }
+        Pen bordpen = new Pen(InputMode.Skinbordpen);
+        public SolidBrush bstring = new SolidBrush(InputMode.Skinbstring);
+        public SolidBrush bcstring = new SolidBrush(InputMode.Skinbcstring);
+        public SolidBrush fbcstring = new SolidBrush(InputMode.Skinfbcstring);
+        public SolidBrush skinback = new SolidBrush(InputMode.SkinBack);
+       
         /// <summary>
         /// 绘制候选框
         /// </summary>
         /// <param name="e"></param>
         protected override void OnPaint(PaintEventArgs e)
         {
-       
-            BufferedGraphicsContext context = BufferedGraphicsManager.Current;
-            BufferedGraphics grafx = context.Allocate(e.Graphics, e.ClipRectangle);
-      
+            if (cachearry == null) return;
+
+            if (this.inputstr.Length == 0 && !Dream) return;
+            BufferedGraphics grafx = getBufferedGraphics(Width, e);
             try
             {
-                if (this.inputstr.Length==0 && !Dream) return;
- 
-                if (ViewType == 0)
-                    grafx.Graphics.FillRectangle(new SolidBrush(InputMode.SkinBack), new Rectangle(0, 0, Width, Height));
-                else
-                    grafx.Graphics.FillRectangle(new SolidBrush(InputMode.SkinBack), new Rectangle(0, 0, Width, Height));
- 
+                grafx.Graphics.FillRectangle(skinback, new Rectangle(0, 0, Width, Height));
+
                 if (InputMode.pinyin || InputMode.datacf || InputMode.ftfzxs || !Input.IsJT)
                 {
                     if (valuearry != null && valuearry.Length <= pinyipos || PageSize <= pinyipos) pinyipos = 0;
@@ -1478,7 +1495,7 @@ namespace Core.Base
                                     s2t = String.Empty;
                                 }
                             }
-                            else if(Input.IsJT)
+                            else if (Input.IsJT)
                             {
                                 s2t = "";
                                 bool haveft = false;
@@ -1487,7 +1504,7 @@ namespace Core.Base
                                     if (Input.S2TDict.ContainsKey(sz.Substring(i, 1)))
                                     {
                                         string s2t1 = Input.S2TDict[sz.Substring(i, 1)].Split(' ')[0];
-                                        if(sz.Substring(i, 1)== s2t1 && Input.S2TDict[sz.Substring(i, 1)].Split(' ').Length > 1)
+                                        if (sz.Substring(i, 1) == s2t1 && Input.S2TDict[sz.Substring(i, 1)].Split(' ').Length > 1)
                                         {
                                             s2t1 = Input.S2TDict[sz.Substring(i, 1)].Split(' ')[1];
                                         }
@@ -1501,7 +1518,8 @@ namespace Core.Base
                             }
                             else s2t = String.Empty;
                         }
-                        else {
+                        else
+                        {
                             s2t = String.Empty;
                         }
                     }
@@ -1515,13 +1533,11 @@ namespace Core.Base
                     pinyipos = 0;
                 }
 
-                
-                Pen bordpen = new Pen(InputMode.Skinbordpen);
-                SolidBrush bstring = new SolidBrush(InputMode.Skinbstring);
-                SolidBrush bcstring = new SolidBrush(InputMode.Skinbcstring);
-                SolidBrush fbcstring = new SolidBrush(InputMode.Skinfbcstring);
-                Rectangle hzrec = new Rectangle(0, 0, Width - 1, Height  - 1);
+
+
+                Rectangle hzrec = new Rectangle(0, 0, Width - 1, Height - 1);
                 grafx.Graphics.DrawRectangle(bordpen, hzrec);
+
                 int inputy = InputMode.SkinFontJG;
                 string ins = "";
                 if (InputMode.useregular)
@@ -1530,85 +1546,91 @@ namespace Core.Base
                     ins = InputStatusFrm.Dream ? "智能联想" : this.inputstr + (s2t.Length > 0 ? " " + s2t : "") + (pys.Length > 0 || cfs.Length > 0 ? "  " + (pinyipos + 1) + "." + pys + " " + cfs : "");
                 int fontsize = InputMode.SkinFontSize;
                 grafx.Graphics.DrawString(ins, new Font(InputMode.cffontname, fontsize > 18 ? 18 : fontsize), bstring, new Point(0 + 3, 0 + 3));
-               
+
                 if (valuearry != null && valuearry.Length > 0 && !InputStatusFrm.Dream && valuearry.Length > PageSize) //分页数显示
                     grafx.Graphics.DrawString(string.Format("{0}/{1}", PageNum, valuearry.Length / PageSize + 1), new Font("", 11F), bstring, new Point(Width - 44, 0 + 3));
 
-               
-                if (ViewType == 0)
+
+                //if (ViewType == 0)
+                //{
+                //横排显示
+                int wx = 1;
+                for (int i = 0; i < cachearry.Length; i++)
                 {
-                    //横排显示
-                    if (cachearry == null) return;
-                    int wx = 1;
-                    for (int i = 0; i < cachearry.Length; i++)
+                    try
                     {
-                        try
-                        {
-                            if (InputMode.lbinputc[i] == null) break;
-                            if (string.IsNullOrEmpty(cachearry[i])) break; ;
-                            string v = GetCutStr(cachearry[i].Split('|')[1]);
-
-                            string pos = i == 9 ? "0." : (i + 1).ToString() + ".";
-
-
-                            Font tfont = new Font(InputMode.SkinFontName, fontsize);
-
-                            if (i == 0)
-                                grafx.Graphics.DrawString(pos + v, tfont, fbcstring, new PointF(wx, inputy));
-                            else
-                                grafx.Graphics.DrawString(pos + v, tfont, bstring, new PointF(wx, inputy));
-
-                            if (InputMode.lbinputv == null || InputMode.lbinputv[i] == null) return;
-
-                            InputMode.lbinputv[i].Text = pos + v;
-
-                            wx += InputMode.lbinputv[i].PreferredWidth - 7;
-
-                            grafx.Graphics.DrawString(cachearry[i].Split('|')[2], new Font("", fontsize - 1), bcstring, new Point(wx, inputy - 2));
-
-                            if (InputMode.lbinputc[i] == null || string.IsNullOrEmpty(InputMode.lbinputc[i].Text))
-                            {
-                                wx += 1;
-                            }
-                            else
-                            {
-                                wx += InputMode.lbinputc[i].PreferredWidth + 2;
-                                if (InputMode.lbinputv[i].Text.Length > 3)
-                                    wx += -4;
-                            }
-                        }
-                        catch { }
-                    }
-              
-                }
-                else
-                {
-                    //竖排显示
-                    if (cachearry == null) return;
-                    for (int i = 0; i < cachearry.Length; i++)
-                    {
+                        if (InputMode.lbinputc[i] == null) break;
                         if (string.IsNullOrEmpty(cachearry[i])) break; ;
                         string v = GetCutStr(cachearry[i].Split('|')[1]);
+
                         string pos = i == 9 ? "0." : (i + 1).ToString() + ".";
-                        Font tfont = new Font(InputMode.SkinFontName, InputMode.SkinFontSize);
-                        int vw = InputMode.GetWidth(cachearry[i].Split('|')[1]);
+
+
+                        Font tfont = new Font(InputMode.SkinFontName, fontsize);
+
                         if (i == 0)
-                            grafx.Graphics.DrawString(pos + v, tfont, fbcstring, new Point(3, inputy + i * InputMode.SkinFontH));
+                            grafx.Graphics.DrawString(pos + v, tfont, fbcstring, new PointF(wx, inputy));
                         else
-                            grafx.Graphics.DrawString(pos + v, tfont, bstring, new Point(3, inputy + i * InputMode.SkinFontH));
- 
-                        grafx.Graphics.DrawString(cachearry[i].Split('|')[2], new Font("宋体", InputMode.SkinFontSize - 1), bcstring, new Point(3 + vw, (inputy + i * InputMode.SkinFontH) - 1));
+                            grafx.Graphics.DrawString(pos + v, tfont, bstring, new PointF(wx, inputy));
+
+                        if (InputMode.lbinputv == null || InputMode.lbinputv[i] == null) return;
+
+                        InputMode.lbinputv[i].Text = pos + v;
+
+                        wx += InputMode.lbinputv[i].PreferredWidth - 7;
+
+                        grafx.Graphics.DrawString(cachearry[i].Split('|')[2], new Font("", fontsize - 1), bcstring, new Point(wx, inputy - 2));
+
+                        if (InputMode.lbinputc[i] == null || string.IsNullOrEmpty(InputMode.lbinputc[i].Text))
+                        {
+                            wx += 1;
+                        }
+                        else
+                        {
+                            wx += InputMode.lbinputc[i].PreferredWidth + 2;
+                            if (InputMode.lbinputv[i].Text.Length > 3)
+                                wx += -4;
+                        }
                     }
+                    catch { }
                 }
 
+                //}
+                //else
+                //{
+                //    //竖排显示
+                //    for (int i = 0; i < cachearry.Length; i++)
+                //    {
+                //        if (string.IsNullOrEmpty(cachearry[i])) break;
+                //        string v = GetCutStr(cachearry[i].Split('|')[1]);
+                //        string pos = i == 9 ? "0." : (i + 1).ToString() + ".";
+                //        Font tfont = new Font(InputMode.SkinFontName, InputMode.SkinFontSize);
+                //        int vw = InputMode.GetWidth(cachearry[i].Split('|')[1]);
+                //        if (i == 0)
+                //            grafx.Graphics.DrawString(pos + v, tfont, fbcstring, new Point(3, inputy + i * InputMode.SkinFontH));
+                //        else
+                //            grafx.Graphics.DrawString(pos + v, tfont, bstring, new Point(3, inputy + i * InputMode.SkinFontH));
+
+                //        grafx.Graphics.DrawString(cachearry[i].Split('|')[2], new Font("宋体", InputMode.SkinFontSize - 1), bcstring, new Point(3 + vw, (inputy + i * InputMode.SkinFontH) - 1));
+                //    }
+                //}
+
                 grafx.Render(e.Graphics);
+
             }
             catch { }
             finally
             {
-                grafx.Graphics.Dispose();
-                grafx.Dispose();
+                if (viewnum > 1000)
+                {
+                    viewnum = 0;
+
+                    GC.Collect(GC.MaxGeneration);
+                    GC.WaitForPendingFinalizers();
+                    GC.Collect(GC.MaxGeneration);
+                }
             }
+
         }
 
         //图片输出

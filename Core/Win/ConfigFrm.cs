@@ -56,7 +56,7 @@ namespace Core.Win
             InputMode.zsmode1 = ((int)this.nuzsmode2.Value);
             InputMode.outtype = this.cmouttype.SelectedIndex;
             InputMode.datacf = this.chedatacf.Checked;
-            InputMode.imghh = this.chimghh.Checked ;
+            InputMode.imghh = this.chimghh.Checked;
             InputMode.oneoutbj = this.choneoutbj.Checked;
             InputMode.ftfzxs = this.chftfzxs.Checked;
             InputMode.dcxz = this.chkdcxz.Checked;
@@ -67,6 +67,10 @@ namespace Core.Win
             InputMode.autodata = this.chkautodata.Checked;
             InputMode.useregular = this.cheuseregular.Checked;
             winput.SaveSetting();
+            WinInput.InputStatus.bstring = new SolidBrush(InputMode.Skinbstring);
+            WinInput.InputStatus.bcstring = new SolidBrush(InputMode.Skinbcstring);
+            WinInput.InputStatus.fbcstring = new SolidBrush(InputMode.Skinfbcstring);
+            WinInput.InputStatus.skinback = new SolidBrush(InputMode.SkinBack);
             if (InputMode.useregular && File.Exists(System.IO.Path.Combine(InputMode.AppPath, "dict", InputMode.CDPath, "setting.yaml")))
                 WinInput.settingYaml = new YAMLHelp(System.IO.Path.Combine(InputMode.AppPath, "dict", InputMode.CDPath, "setting.yaml"));
             Comm.Function.RunWhenStart(InputMode.AutoRun);
@@ -125,6 +129,8 @@ namespace Core.Win
             this.chkautodata.Checked = InputMode.autodata;
 
             this.cheuseregular.Checked = InputMode.useregular;
+
+            this.Text = "属性设置 " + WinInput.InputStatus.buffgr.Count;
         }
  
         private void numSkinHeight_ValueChanged(object sender, EventArgs e)

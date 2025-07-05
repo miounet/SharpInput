@@ -22,7 +22,6 @@ namespace Core.Win
 
         ~LXFrm()
         {
-            GC.SuppressFinalize(this);
             GC.Collect();
         }
  
@@ -1891,7 +1890,7 @@ Application.ExecutablePath.Substring(0, Application.ExecutablePath.LastIndexOf("
 
             dictcode.Clear();
             dictcp.Clear();
-            GC.SuppressFinalize(this);
+         
             GC.Collect();
             MessageBox.Show("清除完毕");
         }
