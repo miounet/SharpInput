@@ -2997,25 +2997,29 @@ namespace Core.Win
             mnuItms[mnuItms.Length - 6].MenuItems.Add(itmetools5);
 
             mnuItms[mnuItms.Length - 5] = new MenuItem();
-            mnuItms[mnuItms.Length - 5].Text = "帮助说明";
+            mnuItms[mnuItms.Length - 5].Text = "方案帮助说明";
             mnuItms[mnuItms.Length - 5].Visible = true;
             mnuItms[mnuItms.Length - 5].Click += new System.EventHandler(this.OpenHelp);
 
             mnuItms[mnuItms.Length - 4] = new MenuItem();
-            mnuItms[mnuItms.Length - 4].Text = "用户词库";
+            mnuItms[mnuItms.Length - 4].Text = "软件使用说明";
             mnuItms[mnuItms.Length - 4].Visible = true;
-            mnuItms[mnuItms.Length - 4].Click += new System.EventHandler(this.UserDictM);
+            mnuItms[mnuItms.Length - 4].Click += new System.EventHandler(this.OpenSoftHelp);
 
             mnuItms[mnuItms.Length - 3] = new MenuItem();
-            mnuItms[mnuItms.Length - 3].Text = "汉字编码查询";
+            mnuItms[mnuItms.Length - 3].Text = "用户词库";
             mnuItms[mnuItms.Length - 3].Visible = true;
-            mnuItms[mnuItms.Length - 3].Click += new System.EventHandler(this.QueryCode);
+            mnuItms[mnuItms.Length - 3].Click += new System.EventHandler(this.UserDictM);
 
-            mnuItms[mnuItms.Length - 2] = new MenuItem("-");
+            mnuItms[mnuItms.Length - 2] = new MenuItem();
+            mnuItms[mnuItms.Length - 2].Text = "汉字编码查询";
+            mnuItms[mnuItms.Length - 2].Visible = true;
+            mnuItms[mnuItms.Length - 2].Click += new System.EventHandler(this.QueryCode);
 
+            
  
             mnuItms[mnuItms.Length - 1] = new MenuItem();
-            mnuItms[mnuItms.Length - 1].Text = "退出";
+            mnuItms[mnuItms.Length - 1].Text = "== 退出 ==";
             mnuItms[mnuItms.Length - 1].Click += new System.EventHandler(this.ExitSelect);
 
             notifyiconMnu = new ContextMenu(mnuItms);
@@ -3189,6 +3193,38 @@ namespace Core.Win
             {
 
                 MessageBox.Show("未找到帮助文档(help.pdf/help.doc/help.chm)!", "速录宝");
+
+            }
+        }
+        private void OpenSoftHelp(object sender, System.EventArgs e)
+        {
+
+            try
+            {
+                System.Diagnostics.Process Proc = new System.Diagnostics.Process();
+                System.Diagnostics.ProcessStartInfo Info = new System.Diagnostics.ProcessStartInfo();
+                Info.WorkingDirectory = System.IO.Path.Combine(InputMode.AppPath);
+                Info.FileName = "速录宝并击帮助.chm";
+                if (File.Exists(System.IO.Path.Combine(Info.WorkingDirectory, "速录宝并击帮助.pdf")))
+                {
+                    Info.FileName = "速录宝并击帮助.pdf";
+                }
+                else if (File.Exists(System.IO.Path.Combine(Info.WorkingDirectory, "速录宝并击帮助.doc")))
+                {
+                    Info.FileName = "速录宝并击帮助.doc";
+                }
+                else if (File.Exists(System.IO.Path.Combine(Info.WorkingDirectory, "速录宝并击帮助.docx")))
+                {
+                    Info.FileName = "速录宝并击帮助.docx";
+                }
+         
+
+                Proc = System.Diagnostics.Process.Start(Info);
+            }
+            catch
+            {
+
+                MessageBox.Show("未找到帮助文档(速录宝并击帮助.pdf/速录宝并击帮助.doc/速录宝并击帮助.docx)!", "速录宝");
 
             }
         }
