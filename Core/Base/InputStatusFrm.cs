@@ -1726,11 +1726,16 @@ namespace Core.Base
         {
             if (Win.WinInput.InputStatus.Visible)
             {
+                Control control = sender as Control;
+                if (control == null) return;
                 //图片输出
-                Bitmap img = new Bitmap(Win.WinInput.InputStatus.Width, Win.WinInput.InputStatus.Height);
-                Graphics g = Graphics.FromImage(img);
-                g.CompositingQuality = CompositingQuality.HighQuality;
-                g.CopyFromScreen(Win.WinInput.InputStatus.Left, Win.WinInput.InputStatus.Top, 0, 0, new Size(Win.WinInput.InputStatus.Width, Win.WinInput.InputStatus.Height));
+
+                Bitmap img = new Bitmap(control.Width, control.Height);
+                // 绘制控件内容到位图
+                control.DrawToBitmap(img, new Rectangle(0, 0, control.Width, control.Height));
+                //Graphics g = Graphics.FromImage(img);
+                //g.CompositingQuality = CompositingQuality.HighQuality;
+                //g.CopyFromScreen(control.Left, control.Top, 0, 0, new Size(control.Width, control.Height));
                 Clipboard.SetImage(img);
             }
         }
@@ -1740,10 +1745,16 @@ namespace Core.Base
             if (Win.WinInput.InputStatus.Visible)
             {
                 //图片输出
-                Bitmap img = new Bitmap(Win.WinInput.InputStatus.Width, Win.WinInput.InputStatus.Height);
-                Graphics g = Graphics.FromImage(img);
-                g.CompositingQuality = CompositingQuality.HighQuality;
-                g.CopyFromScreen(Win.WinInput.InputStatus.Left, Win.WinInput.InputStatus.Top, 0, 0, new Size(Win.WinInput.InputStatus.Width, Win.WinInput.InputStatus.Height));
+                Control control = sender as Control;
+                if (control == null) return;
+                //图片输出
+
+                Bitmap img = new Bitmap(control.Width, control.Height);
+                // 绘制控件内容到位图
+                control.DrawToBitmap(img, new Rectangle(0, 0, control.Width, control.Height));
+                //Graphics g = Graphics.FromImage(img);
+                //g.CompositingQuality = CompositingQuality.HighQuality;
+                //g.CopyFromScreen(control.Left, control.Top, 0, 0, new Size(control.Width, control.Height));
                 Clipboard.SetImage(img);
                 SendKeys.Send("^v"); //发送ctrl+v 进行粘贴
             }
