@@ -1401,26 +1401,15 @@ namespace Core.Base
         string pys = "";
         string cfs = "";
         public string s2t = "";
-        private int viewnum = 0;
+      
         BufferedGraphicsContext context = BufferedGraphicsManager.Current;
-        public Dictionary<int, BufferedGraphics> buffgr = new Dictionary<int, BufferedGraphics>();
-        private BufferedGraphics getBufferedGraphics(int key, PaintEventArgs e)
-        {
-            if (buffgr.ContainsKey(key))
-                return buffgr[key];
-            else
-            {
-                var gr= context.Allocate(e.Graphics, new Rectangle(0, 0, Width, Height));
-                buffgr.Add(key, gr);
-                return buffgr[key];
-            }
-        }
+ 
         Pen bordpen = new Pen(InputMode.Skinbordpen);
         public SolidBrush bstring = new SolidBrush(InputMode.Skinbstring);
         public SolidBrush bcstring = new SolidBrush(InputMode.Skinbcstring);
         public SolidBrush fbcstring = new SolidBrush(InputMode.Skinfbcstring);
         public SolidBrush skinback = new SolidBrush(InputMode.SkinBack);
-       
+
         /// <summary>
         /// 绘制候选框
         /// </summary>
@@ -1430,59 +1419,66 @@ namespace Core.Base
             if (cachearry == null) return;
 
             if (this.inputstr.Length == 0 && !Dream) return;
-            BufferedGraphics grafx = getBufferedGraphics(Width, e);
+
             try
             {
-                grafx.Graphics.FillRectangle(skinback, new Rectangle(0, 0, Width, Height));
-
-                if (InputMode.pinyin || InputMode.datacf || InputMode.ftfzxs || !Input.IsJT)
+                using (BufferedGraphics grafx = context.Allocate(e.Graphics, new Rectangle(0, 0, Width, Height)))
                 {
-                    if (valuearry != null && valuearry.Length <= pinyipos || PageSize <= pinyipos) pinyipos = 0;
+                    grafx.Graphics.FillRectangle(skinback, new Rectangle(0, 0, Width, Height));
 
-                    if (InputMode.pinyin)
+                    if (InputMode.pinyin || InputMode.datacf || InputMode.ftfzxs || !Input.IsJT)
                     {
-                        if (valuearry != null && valuearry.Length > pinyipos
-                            && cachearry[pinyipos].Split('|').Length > 1
-                            && Input.PinYi.ContainsKey(cachearry[pinyipos].Split('|')[1].Substring(0, 1)))
+                        if (valuearry != null && valuearry.Length <= pinyipos || PageSize <= pinyipos) pinyipos = 0;
+
+                        if (InputMode.pinyin)
                         {
-                            pys = Input.PinYi[cachearry[pinyipos].Split('|')[1].Substring(0, 1)];
+                            if (valuearry != null && valuearry.Length > pinyipos
+                                && cachearry[pinyipos].Split('|').Length > 1
+                                && Input.PinYi.ContainsKey(cachearry[pinyipos].Split('|')[1].Substring(0, 1)))
+                            {
+                                pys = Input.PinYi[cachearry[pinyipos].Split('|')[1].Substring(0, 1)];
+                            }
+                            else pys = String.Empty;
+
                         }
                         else pys = String.Empty;
 
-                    }
-                    else pys = String.Empty;
-
-                    if (InputMode.datacf)
-                    {
-                        if (valuearry != null && valuearry.Length > pinyipos
-                        && cachearry[pinyipos].Split('|').Length > 1
-                        && Input.CfDict.ContainsKey(cachearry[pinyipos].Split('|')[1].Substring(0, 1)))
+                        if (InputMode.datacf)
                         {
-                            cfs = Input.CfDict[cachearry[pinyipos].Split('|')[1].Substring(0, 1)];
+                            if (valuearry != null && valuearry.Length > pinyipos
+                            && cachearry[pinyipos].Split('|').Length > 1
+                            && Input.CfDict.ContainsKey(cachearry[pinyipos].Split('|')[1].Substring(0, 1)))
+                            {
+                                cfs = Input.CfDict[cachearry[pinyipos].Split('|')[1].Substring(0, 1)];
+                            }
+                            else cfs = String.Empty;
                         }
                         else cfs = String.Empty;
-                    }
-                    else cfs = String.Empty;
 
-                    if (!Input.IsJT || InputMode.ftfzxs)
-                    {
-                        if (valuearry != null && valuearry.Length > pinyipos
-                        && cachearry[pinyipos].Split('|').Length > 1)
+                        if (!Input.IsJT || InputMode.ftfzxs)
                         {
-                            string osz = cachearry[pinyipos].Split('|')[1];
-                            string sz = Input.IsJT ? cachearry[pinyipos].Split('|')[1]
-                                : Microsoft.VisualBasic.Strings.StrConv(cachearry[pinyipos].Split('|')[1], Microsoft.VisualBasic.VbStrConv.SimplifiedChinese, 0);
-                            if (sz.Length == 1)
+                            if (valuearry != null && valuearry.Length > pinyipos
+                            && cachearry[pinyipos].Split('|').Length > 1)
                             {
-                                if (Input.S2TDict.ContainsKey(sz))
+                                string osz = cachearry[pinyipos].Split('|')[1];
+                                string sz = Input.IsJT ? cachearry[pinyipos].Split('|')[1]
+                                    : Microsoft.VisualBasic.Strings.StrConv(cachearry[pinyipos].Split('|')[1], Microsoft.VisualBasic.VbStrConv.SimplifiedChinese, 0);
+                                if (sz.Length == 1)
                                 {
-                                    s2t = "";
-                                    sz = Input.S2TDict[sz].Replace(osz, "").Trim();
-                                    if (sz.Length > 0)
+                                    if (Input.S2TDict.ContainsKey(sz))
                                     {
-                                        for (int i = 0; i < sz.Split(' ').Length; i++)
+                                        s2t = "";
+                                        sz = Input.S2TDict[sz].Replace(osz, "").Trim();
+                                        if (sz.Length > 0)
                                         {
-                                            s2t += (i + 1) + "." + sz.Split(' ')[i] + " ";
+                                            for (int i = 0; i < sz.Split(' ').Length; i++)
+                                            {
+                                                s2t += (i + 1) + "." + sz.Split(' ')[i] + " ";
+                                            }
+                                        }
+                                        else
+                                        {
+                                            s2t = String.Empty;
                                         }
                                     }
                                     else
@@ -1490,145 +1486,132 @@ namespace Core.Base
                                         s2t = String.Empty;
                                     }
                                 }
+                                else if (Input.IsJT)
+                                {
+                                    s2t = "";
+                                    bool haveft = false;
+                                    for (int i = 0; i < sz.Length; i++)
+                                    {
+                                        if (Input.S2TDict.ContainsKey(sz.Substring(i, 1)))
+                                        {
+                                            string s2t1 = Input.S2TDict[sz.Substring(i, 1)].Split(' ')[0];
+                                            if (sz.Substring(i, 1) == s2t1 && Input.S2TDict[sz.Substring(i, 1)].Split(' ').Length > 1)
+                                            {
+                                                s2t1 = Input.S2TDict[sz.Substring(i, 1)].Split(' ')[1];
+                                            }
+                                            s2t += s2t1;
+                                            haveft = true;
+                                        }
+                                        else
+                                            s2t += sz.Substring(i, 1);
+                                    }
+                                    if (!haveft) s2t = String.Empty;
+                                }
+                                else s2t = String.Empty;
+                            }
+                            else
+                            {
+                                s2t = String.Empty;
+                            }
+                        }
+                        else { s2t = String.Empty; }
+                    }
+                    else
+                    {
+                        pys = String.Empty;
+                        cfs = String.Empty;
+                        s2t = string.Empty;
+                        pinyipos = 0;
+                    }
+
+
+                    Rectangle hzrec = new Rectangle(0, 0, Width - 1, Height - 1);
+                    grafx.Graphics.DrawRectangle(bordpen, hzrec);
+
+                    int inputy = InputMode.SkinFontJG;
+                    string ins = "";
+                    if (InputMode.useregular)
+                        ins = InputStatusFrm.Dream ? "智能联想" : InputMode.CovertCodeStrByReg(this.inputstr) + (s2t.Length > 0 ? " " + s2t : "") + (pys.Length > 0 || cfs.Length > 0 ? "  " + (pinyipos + 1) + "." + pys + " " + cfs : "");
+                    else
+                        ins = InputStatusFrm.Dream ? "智能联想" : this.inputstr + (s2t.Length > 0 ? " " + s2t : "") + (pys.Length > 0 || cfs.Length > 0 ? "  " + (pinyipos + 1) + "." + pys + " " + cfs : "");
+                    int fontsize = InputMode.SkinFontSize;
+                    grafx.Graphics.DrawString(ins, new Font(InputMode.cffontname, fontsize > 18 ? 18 : fontsize), bstring, new Point(0 + 3, 0 + 3));
+
+                    if (valuearry != null && valuearry.Length > 0 && !InputStatusFrm.Dream && valuearry.Length > PageSize) //分页数显示
+                        grafx.Graphics.DrawString(string.Format("{0}/{1}", PageNum, valuearry.Length / PageSize + 1), new Font("", 11F), bstring, new Point(Width - 44, 0 + 3));
+
+
+                    if (ViewType == 0)
+                    {
+                        //横排显示
+                        int wx = 1;
+                        for (int i = 0; i < cachearry.Length; i++)
+                        {
+                            try
+                            {
+                                if (InputMode.lbinputc[i] == null) break;
+                                if (string.IsNullOrEmpty(cachearry[i])) break; ;
+                                string v = GetCutStr(cachearry[i].Split('|')[1]);
+
+                                string pos = i == 9 ? "0." : (i + 1).ToString() + ".";
+
+
+                                Font tfont = new Font(InputMode.SkinFontName, fontsize);
+
+                                if (i == 0)
+                                    grafx.Graphics.DrawString(pos + v, tfont, fbcstring, new PointF(wx, inputy));
+                                else
+                                    grafx.Graphics.DrawString(pos + v, tfont, bstring, new PointF(wx, inputy));
+
+                                if (InputMode.lbinputv == null || InputMode.lbinputv[i] == null) return;
+
+                                InputMode.lbinputv[i].Text = pos + v;
+
+                                wx += InputMode.lbinputv[i].PreferredWidth - 7;
+
+                                grafx.Graphics.DrawString(cachearry[i].Split('|')[2], new Font("", fontsize - 1), bcstring, new Point(wx, inputy - 2));
+
+                                if (InputMode.lbinputc[i] == null || string.IsNullOrEmpty(InputMode.lbinputc[i].Text))
+                                {
+                                    wx += 1;
+                                }
                                 else
                                 {
-                                    s2t = String.Empty;
+                                    wx += InputMode.lbinputc[i].PreferredWidth + 2;
+                                    if (InputMode.lbinputv[i].Text.Length > 3)
+                                        wx += -4;
                                 }
                             }
-                            else if (Input.IsJT)
-                            {
-                                s2t = "";
-                                bool haveft = false;
-                                for (int i = 0; i < sz.Length; i++)
-                                {
-                                    if (Input.S2TDict.ContainsKey(sz.Substring(i, 1)))
-                                    {
-                                        string s2t1 = Input.S2TDict[sz.Substring(i, 1)].Split(' ')[0];
-                                        if (sz.Substring(i, 1) == s2t1 && Input.S2TDict[sz.Substring(i, 1)].Split(' ').Length > 1)
-                                        {
-                                            s2t1 = Input.S2TDict[sz.Substring(i, 1)].Split(' ')[1];
-                                        }
-                                        s2t += s2t1;
-                                        haveft = true;
-                                    }
-                                    else
-                                        s2t += sz.Substring(i, 1);
-                                }
-                                if (!haveft) s2t = String.Empty;
-                            }
-                            else s2t = String.Empty;
+                            catch { }
                         }
-                        else
-                        {
-                            s2t = String.Empty;
-                        }
+
                     }
-                    else { s2t = String.Empty; }
-                }
-                else
-                {
-                    pys = String.Empty;
-                    cfs = String.Empty;
-                    s2t = string.Empty;
-                    pinyipos = 0;
-                }
-
-
-
-                Rectangle hzrec = new Rectangle(0, 0, Width - 1, Height - 1);
-                grafx.Graphics.DrawRectangle(bordpen, hzrec);
-
-                int inputy = InputMode.SkinFontJG;
-                string ins = "";
-                if (InputMode.useregular)
-                    ins = InputStatusFrm.Dream ? "智能联想" : InputMode.CovertCodeStrByReg(this.inputstr) + (s2t.Length > 0 ? " " + s2t : "") + (pys.Length > 0 || cfs.Length > 0 ? "  " + (pinyipos + 1) + "." + pys + " " + cfs : "");
-                else
-                    ins = InputStatusFrm.Dream ? "智能联想" : this.inputstr + (s2t.Length > 0 ? " " + s2t : "") + (pys.Length > 0 || cfs.Length > 0 ? "  " + (pinyipos + 1) + "." + pys + " " + cfs : "");
-                int fontsize = InputMode.SkinFontSize;
-                grafx.Graphics.DrawString(ins, new Font(InputMode.cffontname, fontsize > 18 ? 18 : fontsize), bstring, new Point(0 + 3, 0 + 3));
-
-                if (valuearry != null && valuearry.Length > 0 && !InputStatusFrm.Dream && valuearry.Length > PageSize) //分页数显示
-                    grafx.Graphics.DrawString(string.Format("{0}/{1}", PageNum, valuearry.Length / PageSize + 1), new Font("", 11F), bstring, new Point(Width - 44, 0 + 3));
-
-
-                //if (ViewType == 0)
-                //{
-                //横排显示
-                int wx = 1;
-                for (int i = 0; i < cachearry.Length; i++)
-                {
-                    try
+                    else
                     {
-                        if (InputMode.lbinputc[i] == null) break;
-                        if (string.IsNullOrEmpty(cachearry[i])) break; ;
-                        string v = GetCutStr(cachearry[i].Split('|')[1]);
-
-                        string pos = i == 9 ? "0." : (i + 1).ToString() + ".";
-
-
-                        Font tfont = new Font(InputMode.SkinFontName, fontsize);
-
-                        if (i == 0)
-                            grafx.Graphics.DrawString(pos + v, tfont, fbcstring, new PointF(wx, inputy));
-                        else
-                            grafx.Graphics.DrawString(pos + v, tfont, bstring, new PointF(wx, inputy));
-
-                        if (InputMode.lbinputv == null || InputMode.lbinputv[i] == null) return;
-
-                        InputMode.lbinputv[i].Text = pos + v;
-
-                        wx += InputMode.lbinputv[i].PreferredWidth - 7;
-
-                        grafx.Graphics.DrawString(cachearry[i].Split('|')[2], new Font("", fontsize - 1), bcstring, new Point(wx, inputy - 2));
-
-                        if (InputMode.lbinputc[i] == null || string.IsNullOrEmpty(InputMode.lbinputc[i].Text))
+                        //竖排显示
+                        for (int i = 0; i < cachearry.Length; i++)
                         {
-                            wx += 1;
-                        }
-                        else
-                        {
-                            wx += InputMode.lbinputc[i].PreferredWidth + 2;
-                            if (InputMode.lbinputv[i].Text.Length > 3)
-                                wx += -4;
+                            if (string.IsNullOrEmpty(cachearry[i])) break;
+                            string v = GetCutStr(cachearry[i].Split('|')[1]);
+                            string pos = i == 9 ? "0." : (i + 1).ToString() + ".";
+                            Font tfont = new Font(InputMode.SkinFontName, InputMode.SkinFontSize);
+                            int vw = InputMode.GetWidth(cachearry[i].Split('|')[1]);
+                            if (i == 0)
+                                grafx.Graphics.DrawString(pos + v, tfont, fbcstring, new Point(3, inputy + i * InputMode.SkinFontH));
+                            else
+                                grafx.Graphics.DrawString(pos + v, tfont, bstring, new Point(3, inputy + i * InputMode.SkinFontH));
+
+                            grafx.Graphics.DrawString(cachearry[i].Split('|')[2], new Font("宋体", InputMode.SkinFontSize - 1), bcstring, new Point(3 + vw, (inputy + i * InputMode.SkinFontH) - 1));
                         }
                     }
-                    catch { }
+
+                    grafx.Render(e.Graphics);
+                    grafx.Dispose();
+
                 }
-
-                //}
-                //else
-                //{
-                //    //竖排显示
-                //    for (int i = 0; i < cachearry.Length; i++)
-                //    {
-                //        if (string.IsNullOrEmpty(cachearry[i])) break;
-                //        string v = GetCutStr(cachearry[i].Split('|')[1]);
-                //        string pos = i == 9 ? "0." : (i + 1).ToString() + ".";
-                //        Font tfont = new Font(InputMode.SkinFontName, InputMode.SkinFontSize);
-                //        int vw = InputMode.GetWidth(cachearry[i].Split('|')[1]);
-                //        if (i == 0)
-                //            grafx.Graphics.DrawString(pos + v, tfont, fbcstring, new Point(3, inputy + i * InputMode.SkinFontH));
-                //        else
-                //            grafx.Graphics.DrawString(pos + v, tfont, bstring, new Point(3, inputy + i * InputMode.SkinFontH));
-
-                //        grafx.Graphics.DrawString(cachearry[i].Split('|')[2], new Font("宋体", InputMode.SkinFontSize - 1), bcstring, new Point(3 + vw, (inputy + i * InputMode.SkinFontH) - 1));
-                //    }
-                //}
-
-                grafx.Render(e.Graphics);
-
             }
-            catch { }
-            finally
+            catch
             {
-                if (viewnum > 1000)
-                {
-                    viewnum = 0;
-
-                    GC.Collect(GC.MaxGeneration);
-                    GC.WaitForPendingFinalizers();
-                    GC.Collect(GC.MaxGeneration);
-                }
             }
 
         }

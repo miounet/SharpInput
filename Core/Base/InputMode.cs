@@ -1611,15 +1611,12 @@ namespace Core.Base
             }
         }
 
-        private static BufferedGraphicsContext context;
+       
         [DllImport("user32.dll")]
         public static extern IntPtr GetDC(IntPtr hwnd);
         public static IntPtr deskDC = GetDC(IntPtr.Zero);
         private static BufferedGraphics grafx = null;
-        public static IntPtr GetTopDc()
-        {
-            return GetDC(IntPtr.Zero);
-        }
+ 
         private void ShowWork()
         {
             while (!Break)

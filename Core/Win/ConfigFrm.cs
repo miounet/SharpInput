@@ -130,7 +130,7 @@ namespace Core.Win
 
             this.cheuseregular.Checked = InputMode.useregular;
 
-            this.Text = "属性设置 " + WinInput.InputStatus.buffgr.Count;
+            this.Text = "属性设置 ";
         }
  
         private void numSkinHeight_ValueChanged(object sender, EventArgs e)

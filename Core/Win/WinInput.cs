@@ -2480,7 +2480,7 @@ namespace Core.Win
         {
             #region 光标所在位置
             IntPtr ForegroundWindow = GetForegroundWindow();
-            InputMode.deskDC = InputMode.GetTopDc();
+      
             WinInput.ForegroundWindow = ForegroundWindow;
             curPoint = new Point();
 
