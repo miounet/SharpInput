@@ -1434,9 +1434,9 @@ namespace Core.Base
                         {
                             if (valuearry != null && valuearry.Length > pinyipos
                                 && cachearry[pinyipos].Split('|').Length > 1
-                                && Input.PinYi.ContainsKey(cachearry[pinyipos].Split('|')[1].Substring(0, 1)))
+                                && Input.PinYi.ContainsKey(cachearry[pinyipos].Split('|')[1]))
                             {
-                                pys = Input.PinYi[cachearry[pinyipos].Split('|')[1].Substring(0, 1)];
+                                pys = Input.PinYi[cachearry[pinyipos].Split('|')[1]];
                             }
                             else pys = String.Empty;
 
@@ -1447,9 +1447,9 @@ namespace Core.Base
                         {
                             if (valuearry != null && valuearry.Length > pinyipos
                             && cachearry[pinyipos].Split('|').Length > 1
-                            && Input.CfDict.ContainsKey(cachearry[pinyipos].Split('|')[1].Substring(0, 1)))
+                            && Input.CfDict.ContainsKey(cachearry[pinyipos].Split('|')[1]))
                             {
-                                cfs = Input.CfDict[cachearry[pinyipos].Split('|')[1].Substring(0, 1)];
+                                cfs = Input.CfDict[cachearry[pinyipos].Split('|')[1]];
                             }
                             else cfs = String.Empty;
                         }
