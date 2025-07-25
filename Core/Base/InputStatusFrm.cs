@@ -9,6 +9,8 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Core.Config;
+using Core.Win;
 
 namespace Core.Base
 {
@@ -818,8 +820,38 @@ namespace Core.Base
                                         Core.Win.WinInput.Input.MasterDit = list.ToArray();
 
                                         //初始化索引
-                                        Core.Win.WinInput.Input.CreateIndex(Core.Win.WinInput.Input.MasterDit, ref Core.Win.WinInput.Input.DictIndex.IndexList, 1, 0, Core.Win.WinInput.Input.MasterDit.Length);
-                                        File.WriteAllLines(Core.Win.WinInput.Input.MasterDitPath, Core.Win.WinInput.Input.MasterDit.Where(t => t.Length > 0), Encoding.UTF8);
+                                        List<PosIndex> posl = new List<PosIndex>();
+                                        Core.Win.WinInput.Input.CreateIndex(Core.Win.WinInput.Input.MasterDit, ref posl, 1, 0, Core.Win.WinInput.Input.MasterDit.Length);
+                                        Core.Win.WinInput.Input.DictIndex.IndexList = posl;
+
+                                        if (DictMrg.orderby && File.Exists(System.IO.Path.Combine(InputMode.AppPath, "dict", InputMode.CDPath, "Setting.shp")))
+                                        {
+                                            var setting = File.ReadAllLines(System.IO.Path.Combine(InputMode.AppPath, "dict", InputMode.CDPath, "Setting.shp"), Encoding.UTF8);//读配置
+
+                                            DictMrg.orderby = string.IsNullOrEmpty(SetInfo.GetValue("orderby", setting)) ? true : bool.Parse(SetInfo.GetValue("orderby", setting));
+
+                                        }
+                                        if (DictMrg.orderby)
+                                        {
+                                            //保存词库
+                                            List<string> dlist = new List<string>();
+                                            var iteml = Core.Win.WinInput.Input.MasterDit.ToList();
+
+                                            foreach (var ind in Core.Win.WinInput.Input.DictIndex.IndexList)
+                                            {
+                                                var item = iteml.FindAll(f => f.Split(' ')[0] == ind.Letter);
+                                                if (item != null) dlist.AddRange(item);
+                                                if (ind.mdict != null && ind.mdict.Length > 0)
+                                                    dlist.AddRange(ind.mdict.ToList());
+                                            }
+
+                                            File.WriteAllLines(Core.Win.WinInput.Input.MasterDitPath, dlist.Where(t => t.Length > 0).ToArray(), Encoding.UTF8);
+                                            DictMrg.orderby = false;
+                                        }
+                                        else
+                                        {
+                                            File.WriteAllLines(Core.Win.WinInput.Input.MasterDitPath, Core.Win.WinInput.Input.MasterDit.Where(t => t.Length > 0), Encoding.UTF8);
+                                        }
                                     }
 
 
