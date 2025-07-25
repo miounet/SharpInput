@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConfigFrm));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cktautopos = new System.Windows.Forms.CheckBox();
             this.chimghh = new System.Windows.Forms.CheckBox();
             this.mousetracchk = new System.Windows.Forms.CheckBox();
             this.chedatacf = new System.Windows.Forms.CheckBox();
@@ -92,7 +93,7 @@
             this.cheuseregular = new System.Windows.Forms.CheckBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.cktautopos = new System.Windows.Forms.CheckBox();
+            this.chksmautoadd = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nuzsmode2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.selectnum)).BeginInit();
@@ -134,6 +135,18 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "基本设置";
+            // 
+            // cktautopos
+            // 
+            this.cktautopos.AutoSize = true;
+            this.cktautopos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cktautopos.Location = new System.Drawing.Point(305, 84);
+            this.cktautopos.Margin = new System.Windows.Forms.Padding(4);
+            this.cktautopos.Name = "cktautopos";
+            this.cktautopos.Size = new System.Drawing.Size(87, 20);
+            this.cktautopos.TabIndex = 37;
+            this.cktautopos.Text = "临时调频";
+            this.cktautopos.UseVisualStyleBackColor = true;
             // 
             // chimghh
             // 
@@ -843,7 +856,7 @@
             // 
             this.chkautodata.AutoSize = true;
             this.chkautodata.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chkautodata.Location = new System.Drawing.Point(130, 430);
+            this.chkautodata.Location = new System.Drawing.Point(196, 430);
             this.chkautodata.Margin = new System.Windows.Forms.Padding(4);
             this.chkautodata.Name = "chkautodata";
             this.chkautodata.Size = new System.Drawing.Size(135, 18);
@@ -890,23 +903,25 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // cktautopos
+            // chksmautoadd
             // 
-            this.cktautopos.AutoSize = true;
-            this.cktautopos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cktautopos.Location = new System.Drawing.Point(305, 84);
-            this.cktautopos.Margin = new System.Windows.Forms.Padding(4);
-            this.cktautopos.Name = "cktautopos";
-            this.cktautopos.Size = new System.Drawing.Size(87, 20);
-            this.cktautopos.TabIndex = 37;
-            this.cktautopos.Text = "临时调频";
-            this.cktautopos.UseVisualStyleBackColor = true;
+            this.chksmautoadd.AutoSize = true;
+            this.chksmautoadd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.chksmautoadd.ForeColor = System.Drawing.Color.Green;
+            this.chksmautoadd.Location = new System.Drawing.Point(8, 430);
+            this.chksmautoadd.Margin = new System.Windows.Forms.Padding(4);
+            this.chksmautoadd.Name = "chksmautoadd";
+            this.chksmautoadd.Size = new System.Drawing.Size(135, 18);
+            this.chksmautoadd.TabIndex = 40;
+            this.chksmautoadd.Text = "三码自动补缺选重";
+            this.chksmautoadd.UseVisualStyleBackColor = true;
             // 
             // ConfigFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(644, 520);
+            this.Controls.Add(this.chksmautoadd);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.cheuseregular);
@@ -1026,5 +1041,6 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button SkinBack;
         private System.Windows.Forms.CheckBox cktautopos;
+        private System.Windows.Forms.CheckBox chksmautoadd;
     }
 }

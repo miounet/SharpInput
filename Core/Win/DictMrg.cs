@@ -277,8 +277,30 @@ namespace Core.Win
                 {
                     if (newadd)
                     {
+
+                        if (inputvalue.Length == 1 && inputstr.Length > 1)
+                            poi = Core.Win.WinInput.Input.DictIndex.GetPos(inputstr.Substring(0, 2), ref mdict, false);//单字情况
+                        if (mdict == null) mdict = Core.Win.WinInput.Input.MasterDit;
+                        int posint = 0;
+                        for (int i = poi.Start; i <= poi.End; i++)
+                        {
+                            if (mdict[i].Split(' ')[1].Length == 1 && mdict[i].Split(' ')[0].Length > 1
+                                && mdict[i].Split(' ')[0].Substring(0, 2) == inputstr.Substring(0, 2))
+                            {
+                                pos = i;
+                                if (posint == 0)
+                                    posint++;
+                            }
+                            if (posint > 0)
+                                posint++;
+
+                            if (posint > 100) break;
+                        }
+                        if (inputvalue.Length == 1 && inputstr.Length > 1 && pos > poi.Start)
+                            pos--;
+
                         var list = Core.Win.WinInput.Input.MasterDit.ToList();
-                        list.Insert(pos + 1, inputstr+" "+inputvalue);
+                        list.Insert(pos + 1, inputstr + " " + inputvalue);
                         Core.Win.WinInput.Input.MasterDit = list.ToArray();
                     }
                     else

@@ -66,6 +66,7 @@ namespace Core.Win
             InputMode.spaceaout = this.cmspace.SelectedIndex;
             InputMode.autodata = this.chkautodata.Checked;
             InputMode.useregular = this.cheuseregular.Checked;
+            InputMode.smautoadd = this.chksmautoadd.Checked;
             winput.SaveSetting();
             WinInput.InputStatus.bstring = new SolidBrush(InputMode.Skinbstring);
             WinInput.InputStatus.bcstring = new SolidBrush(InputMode.Skinbcstring);
@@ -129,7 +130,7 @@ namespace Core.Win
             this.chkautodata.Checked = InputMode.autodata;
 
             this.cheuseregular.Checked = InputMode.useregular;
-
+            this.chksmautoadd.Checked = InputMode.smautoadd;
             this.Text = "属性设置 ";
         }
  

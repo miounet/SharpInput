@@ -2,8 +2,12 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.IO;
+using System.Linq;
 using System.Runtime.InteropServices;
+using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Core.Base
@@ -726,6 +730,109 @@ namespace Core.Base
             }
             if (clear)
             {
+                if (InputMode.smautoadd 
+                    && inputstr.Length==0 && pinputstr.Length==4 && tpos > 0 
+                    && InputStatusFrm.cachearry.Length> tpos
+                    && !string.IsNullOrEmpty(InputStatusFrm.cachearry[tpos])
+                    && InputStatusFrm.cachearry[tpos].Split('|')[1].Length > 0
+                    && InputStatusFrm.cachearry[tpos].Split('|')[1].Length <=4)
+                {
+                    //自动添加第三码空缺词
+                   var  tvar = Input.GetInputValue(this.pinputstr.Substring(0,3), false, 1);
+                    if (tvar != null && tvar.Length > 0 && tvar[0].Split('|')[1].Length > 0
+                        && tvar[0].Split('|')[2].Length > 0 && LastSPValue.Length > 1)
+                    {
+                        Task autoadd = new Task(() =>
+                        {
+                            try
+                            {
+                                int first = 0, last = Core.Win.WinInput.Input.MasterDit.Length - 1;
+
+
+                                string inputstr = this.pinputstr.Substring(0, 3);
+                                string inputvalue = LastSPValue;
+                                int pos1 = 0;
+                                bool newadd = false;
+                                string[] mdict = null;
+
+                                PosIndex poi = Core.Win.WinInput.Input.DictIndex.GetPos(inputstr, ref mdict, false);
+                                if (poi == null)
+                                {
+                                    return;
+                                }
+                                first = poi.Start;
+                                last = poi.End;
+
+                                if (mdict == null) mdict = Core.Win.WinInput.Input.MasterDit;
+
+                                for (int i = first; i <= last; i++)
+                                {
+
+                                    if (mdict[i].Split(' ')[0] == inputstr)
+                                    {
+                                        for (int j = 1; j < mdict[i].Split(' ').Length; j++)
+                                        {
+                                            if (inputvalue == mdict[i].Split(' ')[j].Trim())
+                                            {
+
+                                                return;
+                                            }
+                                        }
+                                        newadd = false;
+                                        pos1 = i;
+                                    }
+                                }
+                                if (pos1 == 0)
+                                {
+                                    newadd = true;
+                                    pos1 = last;
+                                }
+                                if (pos1 > 0)
+                                {
+                                    if (newadd)
+                                    {
+
+                                        if (inputvalue.Length == 1 && inputstr.Length > 1)
+                                            poi = Core.Win.WinInput.Input.DictIndex.GetPos(inputstr.Substring(0, 2), ref mdict, false);//单字情况
+                                        if (mdict == null) mdict = Core.Win.WinInput.Input.MasterDit;
+                                        int posint = 0;
+                                        for (int i = poi.Start; i <= poi.End; i++)
+                                        {
+                                            if (mdict[i].Split(' ')[1].Length == 1 && mdict[i].Split(' ')[0].Length > 1
+                                                && mdict[i].Split(' ')[0].Substring(0, 2) == inputstr.Substring(0, 2))
+                                            {
+                                                pos1 = i;
+                                                if (posint == 0)
+                                                    posint++;
+                                            }
+                                            if (posint > 0)
+                                                posint++;
+
+                                            if (posint > 100) break;
+                                        }
+                                        if (inputvalue.Length == 1 && inputstr.Length > 1 && pos1 > poi.Start)
+                                            pos1--;
+
+                                        var list = Core.Win.WinInput.Input.MasterDit.ToList();
+                                        list.Insert(pos1 + 1, inputstr + " " + inputvalue);
+                                        Core.Win.WinInput.Input.MasterDit = list.ToArray();
+
+                                        //初始化索引
+                                        Core.Win.WinInput.Input.CreateIndex(Core.Win.WinInput.Input.MasterDit, ref Core.Win.WinInput.Input.DictIndex.IndexList, 1, 0, Core.Win.WinInput.Input.MasterDit.Length);
+                                        File.WriteAllLines(Core.Win.WinInput.Input.MasterDitPath, Core.Win.WinInput.Input.MasterDit.Where(t => t.Length > 0), Encoding.UTF8);
+                                    }
+
+
+                                }
+                            }
+                            catch
+                            {
+
+                            }
+                        });
+                        autoadd.Start();
+                    }
+                }
                 LSView = false;
                 inputstr = string.Empty;
                 input = string.Empty;

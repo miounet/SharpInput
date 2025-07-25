@@ -168,6 +168,7 @@ namespace Core.Base
         public static bool outdatetime=true;
         public static bool autodata = true;
         public static bool useregular = false;
+        public static bool smautoadd = true;// false;//自动添加缺失的三码词,词长<=4
         public IndexManger DictIndex = new IndexManger ();
         #endregion
 

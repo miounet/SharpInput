@@ -310,6 +310,7 @@ namespace Core.Win
             InputMode.spaceaout = string.IsNullOrEmpty(SetInfo.GetValue("spaceaout", setting)) ? 0 : int.Parse(SetInfo.GetValue("spaceaout", setting));
             InputMode.autodata = string.IsNullOrEmpty(SetInfo.GetValue("autodata", setting)) ? true : bool.Parse(SetInfo.GetValue("autodata", setting));
             InputMode.useregular = string.IsNullOrEmpty(SetInfo.GetValue("useregular", setting)) ? false : bool.Parse(SetInfo.GetValue("useregular", setting));
+            InputMode.smautoadd = string.IsNullOrEmpty(SetInfo.GetValue("smautoadd", setting)) ? false : bool.Parse(SetInfo.GetValue("smautoadd", setting));
             Input.mapstr1 = string.IsNullOrEmpty(SetInfo.GetValue("leftkeys", setting))
                        ? "~1qaz2wsx3edc4rfv5tgb6"
                        : SetInfo.GetValue("leftkeys", setting);
@@ -464,6 +465,7 @@ namespace Core.Win
             set.Add("spaceaout=" + InputMode.spaceaout);
             set.Add("autodata=" + InputMode.autodata);
             set.Add("useregular=" + InputMode.useregular);
+            set.Add("smautoadd=" + InputMode.smautoadd);
             set.Add("leftkeys=" + Input.mapstr1);
             set.Add("rightkeys=" + Input.mapstr2);
             File.WriteAllLines(Input.SettingPath, set.ToArray(), Encoding.UTF8);//保存配置
@@ -2875,13 +2877,13 @@ namespace Core.Win
                 return;
             }
 
-            TrayIcon.Text = "速录宝3.1.9";//鼠标移至托盘的提示文本
+            TrayIcon.Text = "速录宝3.2";//鼠标移至托盘的提示文本
             TrayIcon.Visible = true;
 
             //定义一个MenuItem数组，并把此数组同时赋值给ContextMenu对象 
             mnuItms = new MenuItem[14];
             mnuItms[mnuItms.Length - 14] = new MenuItem();
-            mnuItms[mnuItms.Length - 14].Text = "关于速录宝3.1.9";
+            mnuItms[mnuItms.Length - 14].Text = "关于速录宝3.2";
             mnuItms[mnuItms.Length - 14].Visible = true;
             mnuItms[mnuItms.Length - 14].Click += new System.EventHandler(this.AboutInfo);
             mnuItms[mnuItms.Length - 13] = new MenuItem();
