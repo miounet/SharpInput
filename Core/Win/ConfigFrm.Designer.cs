@@ -143,7 +143,7 @@
             this.cktautopos.Location = new System.Drawing.Point(305, 84);
             this.cktautopos.Margin = new System.Windows.Forms.Padding(4);
             this.cktautopos.Name = "cktautopos";
-            this.cktautopos.Size = new System.Drawing.Size(87, 20);
+            this.cktautopos.Size = new System.Drawing.Size(107, 24);
             this.cktautopos.TabIndex = 37;
             this.cktautopos.Text = "临时调频";
             this.cktautopos.UseVisualStyleBackColor = true;
@@ -155,7 +155,7 @@
             this.chimghh.Location = new System.Drawing.Point(545, 85);
             this.chimghh.Margin = new System.Windows.Forms.Padding(4);
             this.chimghh.Name = "chimghh";
-            this.chimghh.Size = new System.Drawing.Size(87, 20);
+            this.chimghh.Size = new System.Drawing.Size(107, 24);
             this.chimghh.TabIndex = 36;
             this.chimghh.Text = "图片换行";
             this.chimghh.UseVisualStyleBackColor = true;
@@ -167,7 +167,7 @@
             this.mousetracchk.Location = new System.Drawing.Point(244, 56);
             this.mousetracchk.Margin = new System.Windows.Forms.Padding(4);
             this.mousetracchk.Name = "mousetracchk";
-            this.mousetracchk.Size = new System.Drawing.Size(87, 20);
+            this.mousetracchk.Size = new System.Drawing.Size(107, 24);
             this.mousetracchk.TabIndex = 35;
             this.mousetracchk.Text = "鼠标跟随";
             this.mousetracchk.UseVisualStyleBackColor = true;
@@ -179,7 +179,7 @@
             this.chedatacf.Location = new System.Drawing.Point(382, 24);
             this.chedatacf.Margin = new System.Windows.Forms.Padding(4);
             this.chedatacf.Name = "chedatacf";
-            this.chedatacf.Size = new System.Drawing.Size(119, 20);
+            this.chedatacf.Size = new System.Drawing.Size(147, 24);
             this.chedatacf.TabIndex = 34;
             this.chedatacf.Text = "显示汉字拆分";
             this.chedatacf.UseVisualStyleBackColor = true;
@@ -194,7 +194,7 @@
             "嵌入式"});
             this.cmouttype.Location = new System.Drawing.Point(453, 84);
             this.cmouttype.Name = "cmouttype";
-            this.cmouttype.Size = new System.Drawing.Size(73, 24);
+            this.cmouttype.Size = new System.Drawing.Size(73, 28);
             this.cmouttype.TabIndex = 33;
             // 
             // label10
@@ -204,7 +204,7 @@
             this.label10.Location = new System.Drawing.Point(404, 88);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(42, 14);
+            this.label10.Size = new System.Drawing.Size(53, 18);
             this.label10.TabIndex = 32;
             this.label10.Text = "模式:";
             // 
@@ -216,7 +216,7 @@
             this.label9.Location = new System.Drawing.Point(493, 114);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(77, 14);
+            this.label9.Size = new System.Drawing.Size(98, 18);
             this.label9.TabIndex = 31;
             this.label9.Text = "延时按键：";
             // 
@@ -226,7 +226,7 @@
             this.nuzsmode2.Location = new System.Drawing.Point(576, 106);
             this.nuzsmode2.Margin = new System.Windows.Forms.Padding(4);
             this.nuzsmode2.Name = "nuzsmode2";
-            this.nuzsmode2.Size = new System.Drawing.Size(54, 26);
+            this.nuzsmode2.Size = new System.Drawing.Size(54, 30);
             this.nuzsmode2.TabIndex = 30;
             // 
             // chkzsallmap
@@ -237,7 +237,7 @@
             this.chkzsallmap.Location = new System.Drawing.Point(347, 111);
             this.chkzsallmap.Margin = new System.Windows.Forms.Padding(4);
             this.chkzsallmap.Name = "chkzsallmap";
-            this.chkzsallmap.Size = new System.Drawing.Size(135, 20);
+            this.chkzsallmap.Size = new System.Drawing.Size(167, 24);
             this.chkzsallmap.TabIndex = 28;
             this.chkzsallmap.Text = "助手指法全映射";
             this.chkzsallmap.UseVisualStyleBackColor = true;
@@ -250,7 +250,7 @@
             this.chkomeno.Location = new System.Drawing.Point(216, 111);
             this.chkomeno.Margin = new System.Windows.Forms.Padding(4);
             this.chkomeno.Name = "chkomeno";
-            this.chkomeno.Size = new System.Drawing.Size(119, 20);
+            this.chkomeno.Size = new System.Drawing.Size(147, 24);
             this.chkomeno.TabIndex = 27;
             this.chkomeno.Text = "助手启用标点";
             this.chkomeno.UseVisualStyleBackColor = true;
@@ -263,7 +263,7 @@
             this.chkbjzckgsp.Location = new System.Drawing.Point(7, 111);
             this.chkbjzckgsp.Margin = new System.Windows.Forms.Padding(4);
             this.chkbjzckgsp.Name = "chkbjzckgsp";
-            this.chkbjzckgsp.Size = new System.Drawing.Size(199, 20);
+            this.chkbjzckgsp.Size = new System.Drawing.Size(247, 24);
             this.chkbjzckgsp.TabIndex = 26;
             this.chkbjzckgsp.Text = "助手空格上屏，适合整句";
             this.chkbjzckgsp.UseVisualStyleBackColor = true;
@@ -275,7 +275,7 @@
             this.ckautopos.Location = new System.Drawing.Point(175, 84);
             this.ckautopos.Margin = new System.Windows.Forms.Padding(4);
             this.ckautopos.Name = "ckautopos";
-            this.ckautopos.Size = new System.Drawing.Size(119, 20);
+            this.ckautopos.Size = new System.Drawing.Size(147, 24);
             this.ckautopos.TabIndex = 25;
             this.ckautopos.Text = "数字选码调频";
             this.ckautopos.UseVisualStyleBackColor = true;
@@ -287,7 +287,7 @@
             this.chclosebj.Location = new System.Drawing.Point(453, 56);
             this.chclosebj.Margin = new System.Windows.Forms.Padding(4);
             this.chclosebj.Name = "chclosebj";
-            this.chclosebj.Size = new System.Drawing.Size(159, 20);
+            this.chclosebj.Size = new System.Drawing.Size(197, 24);
             this.chclosebj.TabIndex = 25;
             this.chclosebj.Text = "单击模式,并击辅助";
             this.chclosebj.UseVisualStyleBackColor = true;
@@ -299,7 +299,7 @@
             this.ckpinyin.Location = new System.Drawing.Point(512, 24);
             this.ckpinyin.Margin = new System.Windows.Forms.Padding(4);
             this.ckpinyin.Name = "ckpinyin";
-            this.ckpinyin.Size = new System.Drawing.Size(119, 20);
+            this.ckpinyin.Size = new System.Drawing.Size(147, 24);
             this.ckpinyin.TabIndex = 24;
             this.ckpinyin.Text = "显示拼音注音";
             this.ckpinyin.UseVisualStyleBackColor = true;
@@ -311,7 +311,7 @@
             this.ckright3out.Location = new System.Drawing.Point(8, 84);
             this.ckright3out.Margin = new System.Windows.Forms.Padding(4);
             this.ckright3out.Name = "ckright3out";
-            this.ckright3out.Size = new System.Drawing.Size(159, 20);
+            this.ckright3out.Size = new System.Drawing.Size(197, 24);
             this.ckright3out.TabIndex = 23;
             this.ckright3out.Text = "右手第3码顶字上屏";
             this.ckright3out.UseVisualStyleBackColor = true;
@@ -323,7 +323,7 @@
             this.SingleInput.Location = new System.Drawing.Point(347, 56);
             this.SingleInput.Margin = new System.Windows.Forms.Padding(4);
             this.SingleInput.Name = "SingleInput";
-            this.SingleInput.Size = new System.Drawing.Size(87, 20);
+            this.SingleInput.Size = new System.Drawing.Size(107, 24);
             this.SingleInput.TabIndex = 22;
             this.SingleInput.Text = "单字模式";
             this.SingleInput.UseVisualStyleBackColor = true;
@@ -334,7 +334,7 @@
             this.label1.Location = new System.Drawing.Point(239, 26);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(71, 16);
+            this.label1.Size = new System.Drawing.Size(89, 20);
             this.label1.TabIndex = 21;
             this.label1.Text = "候选数：";
             // 
@@ -353,7 +353,7 @@
             0,
             0});
             this.selectnum.Name = "selectnum";
-            this.selectnum.Size = new System.Drawing.Size(54, 26);
+            this.selectnum.Size = new System.Drawing.Size(54, 30);
             this.selectnum.TabIndex = 20;
             this.selectnum.Value = new decimal(new int[] {
             6,
@@ -368,7 +368,7 @@
             this.tracchk.Location = new System.Drawing.Point(137, 56);
             this.tracchk.Margin = new System.Windows.Forms.Padding(4);
             this.tracchk.Name = "tracchk";
-            this.tracchk.Size = new System.Drawing.Size(87, 20);
+            this.tracchk.Size = new System.Drawing.Size(107, 24);
             this.tracchk.TabIndex = 4;
             this.tracchk.Text = "光标跟随";
             this.tracchk.UseVisualStyleBackColor = true;
@@ -380,7 +380,7 @@
             this.chkAutoRun.Location = new System.Drawing.Point(8, 56);
             this.chkAutoRun.Margin = new System.Windows.Forms.Padding(4);
             this.chkAutoRun.Name = "chkAutoRun";
-            this.chkAutoRun.Size = new System.Drawing.Size(119, 20);
+            this.chkAutoRun.Size = new System.Drawing.Size(147, 24);
             this.chkAutoRun.TabIndex = 3;
             this.chkAutoRun.Text = "开机自动运行";
             this.chkAutoRun.UseVisualStyleBackColor = true;
@@ -392,7 +392,7 @@
             this.ckLink.Location = new System.Drawing.Point(139, 25);
             this.ckLink.Margin = new System.Windows.Forms.Padding(4);
             this.ckLink.Name = "ckLink";
-            this.ckLink.Size = new System.Drawing.Size(87, 20);
+            this.ckLink.Size = new System.Drawing.Size(107, 24);
             this.ckLink.TabIndex = 2;
             this.ckLink.Text = "智能联想";
             this.ckLink.UseVisualStyleBackColor = true;
@@ -404,7 +404,7 @@
             this.ckAutoUpdate.Location = new System.Drawing.Point(8, 25);
             this.ckAutoUpdate.Margin = new System.Windows.Forms.Padding(4);
             this.ckAutoUpdate.Name = "ckAutoUpdate";
-            this.ckAutoUpdate.Size = new System.Drawing.Size(87, 20);
+            this.ckAutoUpdate.Size = new System.Drawing.Size(107, 24);
             this.ckAutoUpdate.TabIndex = 1;
             this.ckAutoUpdate.Text = "自动升级";
             this.ckAutoUpdate.UseVisualStyleBackColor = true;
@@ -416,7 +416,7 @@
             this.ckOpenCould.Location = new System.Drawing.Point(7, 386);
             this.ckOpenCould.Margin = new System.Windows.Forms.Padding(4);
             this.ckOpenCould.Name = "ckOpenCould";
-            this.ckOpenCould.Size = new System.Drawing.Size(93, 18);
+            this.ckOpenCould.Size = new System.Drawing.Size(116, 22);
             this.ckOpenCould.TabIndex = 0;
             this.ckOpenCould.Text = "开启云词库";
             this.ckOpenCould.UseVisualStyleBackColor = true;
@@ -430,9 +430,9 @@
             this.ckalt.Location = new System.Drawing.Point(14, 240);
             this.ckalt.Margin = new System.Windows.Forms.Padding(4);
             this.ckalt.Name = "ckalt";
-            this.ckalt.Size = new System.Drawing.Size(487, 20);
+            this.ckalt.Size = new System.Drawing.Size(527, 24);
             this.ckalt.TabIndex = 5;
-            this.ckalt.Text = "开启拇指并击 用空格左右两边键：win/alt/VolumeDown/VolumeUp";
+            this.ckalt.Text = "开启拇指并击 用空格左右两边键：VolumeDown/VolumeUp";
             this.ckalt.UseVisualStyleBackColor = true;
             // 
             // groupBox2
@@ -480,7 +480,7 @@
             this.label11.Location = new System.Drawing.Point(521, 40);
             this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(63, 14);
+            this.label11.Size = new System.Drawing.Size(80, 18);
             this.label11.TabIndex = 19;
             this.label11.Text = "主题风格";
             // 
@@ -501,7 +501,7 @@
             "黑白"});
             this.comboBox1.Location = new System.Drawing.Point(508, 59);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 24);
+            this.comboBox1.Size = new System.Drawing.Size(121, 28);
             this.comboBox1.TabIndex = 34;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
@@ -572,7 +572,7 @@
             0,
             0});
             this.numSkinHeight.Name = "numSkinHeight";
-            this.numSkinHeight.Size = new System.Drawing.Size(64, 26);
+            this.numSkinHeight.Size = new System.Drawing.Size(64, 30);
             this.numSkinHeight.TabIndex = 19;
             this.numSkinHeight.Value = new decimal(new int[] {
             10,
@@ -587,7 +587,7 @@
             this.label54.Location = new System.Drawing.Point(5, 50);
             this.label54.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label54.Name = "label54";
-            this.label54.Size = new System.Drawing.Size(55, 16);
+            this.label54.Size = new System.Drawing.Size(69, 20);
             this.label54.TabIndex = 20;
             this.label54.Text = "选框高";
             // 
@@ -624,7 +624,7 @@
             this.label2.Location = new System.Drawing.Point(42, 277);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(77, 14);
+            this.label2.Size = new System.Drawing.Size(98, 18);
             this.label2.TabIndex = 6;
             this.label2.Text = "左按输出：";
             // 
@@ -635,7 +635,7 @@
             this.txtla.Margin = new System.Windows.Forms.Padding(4);
             this.txtla.MaxLength = 20;
             this.txtla.Name = "txtla";
-            this.txtla.Size = new System.Drawing.Size(87, 26);
+            this.txtla.Size = new System.Drawing.Size(87, 30);
             this.txtla.TabIndex = 7;
             // 
             // label3
@@ -646,7 +646,7 @@
             this.label3.Location = new System.Drawing.Point(92, 372);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(271, 32);
+            this.label3.Size = new System.Drawing.Size(339, 40);
             this.label3.TabIndex = 8;
             this.label3.Text = " 数字代表选重，如：第2位选重可填2\r\n 有冲突请改用VolumeDown/VolumeUp";
             // 
@@ -657,7 +657,7 @@
             this.txtra.Margin = new System.Windows.Forms.Padding(4);
             this.txtra.MaxLength = 20;
             this.txtra.Name = "txtra";
-            this.txtra.Size = new System.Drawing.Size(87, 26);
+            this.txtra.Size = new System.Drawing.Size(87, 30);
             this.txtra.TabIndex = 10;
             // 
             // label4
@@ -667,7 +667,7 @@
             this.label4.Location = new System.Drawing.Point(42, 309);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(77, 14);
+            this.label4.Size = new System.Drawing.Size(98, 18);
             this.label4.TabIndex = 9;
             this.label4.Text = "右按输出：";
             // 
@@ -678,7 +678,7 @@
             this.txtras.Margin = new System.Windows.Forms.Padding(4);
             this.txtras.MaxLength = 20;
             this.txtras.Name = "txtras";
-            this.txtras.Size = new System.Drawing.Size(87, 26);
+            this.txtras.Size = new System.Drawing.Size(87, 30);
             this.txtras.TabIndex = 14;
             // 
             // label5
@@ -688,7 +688,7 @@
             this.label5.Location = new System.Drawing.Point(230, 308);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(84, 14);
+            this.label5.Size = new System.Drawing.Size(107, 18);
             this.label5.TabIndex = 13;
             this.label5.Text = "+空格输出：";
             // 
@@ -699,7 +699,7 @@
             this.txtlas.Margin = new System.Windows.Forms.Padding(4);
             this.txtlas.MaxLength = 20;
             this.txtlas.Name = "txtlas";
-            this.txtlas.Size = new System.Drawing.Size(87, 26);
+            this.txtlas.Size = new System.Drawing.Size(87, 30);
             this.txtlas.TabIndex = 12;
             // 
             // label6
@@ -709,7 +709,7 @@
             this.label6.Location = new System.Drawing.Point(230, 276);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(84, 14);
+            this.label6.Size = new System.Drawing.Size(107, 18);
             this.label6.TabIndex = 11;
             this.label6.Text = "+空格输出：";
             // 
@@ -720,7 +720,7 @@
             this.txtlras.Margin = new System.Windows.Forms.Padding(4);
             this.txtlras.MaxLength = 20;
             this.txtlras.Name = "txtlras";
-            this.txtlras.Size = new System.Drawing.Size(87, 26);
+            this.txtlras.Size = new System.Drawing.Size(87, 30);
             this.txtlras.TabIndex = 18;
             // 
             // label7
@@ -730,7 +730,7 @@
             this.label7.Location = new System.Drawing.Point(230, 342);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(84, 14);
+            this.label7.Size = new System.Drawing.Size(107, 18);
             this.label7.TabIndex = 17;
             this.label7.Text = "+空格输出：";
             // 
@@ -741,7 +741,7 @@
             this.txtlra.Margin = new System.Windows.Forms.Padding(4);
             this.txtlra.MaxLength = 20;
             this.txtlra.Name = "txtlra";
-            this.txtlra.Size = new System.Drawing.Size(87, 26);
+            this.txtlra.Size = new System.Drawing.Size(87, 30);
             this.txtlra.TabIndex = 16;
             // 
             // label8
@@ -751,7 +751,7 @@
             this.label8.Location = new System.Drawing.Point(14, 343);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(105, 14);
+            this.label8.Size = new System.Drawing.Size(134, 18);
             this.label8.TabIndex = 15;
             this.label8.Text = "左右同按输出：";
             // 
@@ -762,7 +762,7 @@
             this.choneoutbj.Location = new System.Drawing.Point(522, 243);
             this.choneoutbj.Margin = new System.Windows.Forms.Padding(4);
             this.choneoutbj.Name = "choneoutbj";
-            this.choneoutbj.Size = new System.Drawing.Size(107, 18);
+            this.choneoutbj.Size = new System.Drawing.Size(134, 22);
             this.choneoutbj.TabIndex = 19;
             this.choneoutbj.Text = "一键输出标点";
             this.choneoutbj.UseVisualStyleBackColor = true;
@@ -774,7 +774,7 @@
             this.chftfzxs.Location = new System.Drawing.Point(522, 270);
             this.chftfzxs.Margin = new System.Windows.Forms.Padding(4);
             this.chftfzxs.Name = "chftfzxs";
-            this.chftfzxs.Size = new System.Drawing.Size(107, 18);
+            this.chftfzxs.Size = new System.Drawing.Size(134, 22);
             this.chftfzxs.TabIndex = 20;
             this.chftfzxs.Text = "繁体辅助显示";
             this.chftfzxs.UseVisualStyleBackColor = true;
@@ -786,7 +786,7 @@
             this.chkdcxz.Location = new System.Drawing.Point(522, 296);
             this.chkdcxz.Margin = new System.Windows.Forms.Padding(4);
             this.chkdcxz.Name = "chkdcxz";
-            this.chkdcxz.Size = new System.Drawing.Size(79, 18);
+            this.chkdcxz.Size = new System.Drawing.Size(98, 22);
             this.chkdcxz.TabIndex = 21;
             this.chkdcxz.Text = "打词消字";
             this.chkdcxz.UseVisualStyleBackColor = true;
@@ -798,7 +798,7 @@
             this.chkiselect.Location = new System.Drawing.Point(522, 322);
             this.chkiselect.Margin = new System.Windows.Forms.Padding(4);
             this.chkiselect.Name = "chkiselect";
-            this.chkiselect.Size = new System.Drawing.Size(100, 18);
+            this.chkiselect.Size = new System.Drawing.Size(125, 22);
             this.chkiselect.TabIndex = 22;
             this.chkiselect.Text = "数字+i 选重";
             this.chkiselect.UseVisualStyleBackColor = true;
@@ -810,7 +810,7 @@
             this.chkonesp.Location = new System.Drawing.Point(522, 346);
             this.chkonesp.Margin = new System.Windows.Forms.Padding(4);
             this.chkonesp.Name = "chkonesp";
-            this.chkonesp.Size = new System.Drawing.Size(79, 18);
+            this.chkonesp.Size = new System.Drawing.Size(98, 22);
             this.chkonesp.TabIndex = 23;
             this.chkonesp.Text = "一码上屏";
             this.chkonesp.UseVisualStyleBackColor = true;
@@ -822,7 +822,7 @@
             this.chkselect3.Location = new System.Drawing.Point(436, 370);
             this.chkselect3.Margin = new System.Windows.Forms.Padding(4);
             this.chkselect3.Name = "chkselect3";
-            this.chkselect3.Size = new System.Drawing.Size(198, 18);
+            this.chkselect3.Size = new System.Drawing.Size(251, 22);
             this.chkselect3.TabIndex = 24;
             this.chkselect3.Text = "空格+第3码 左右选字词上屏";
             this.chkselect3.UseVisualStyleBackColor = true;
@@ -838,7 +838,7 @@
             "3-，。标点顶"});
             this.cmspace.Location = new System.Drawing.Point(498, 395);
             this.cmspace.Name = "cmspace";
-            this.cmspace.Size = new System.Drawing.Size(132, 22);
+            this.cmspace.Size = new System.Drawing.Size(132, 25);
             this.cmspace.TabIndex = 35;
             // 
             // label12
@@ -848,7 +848,7 @@
             this.label12.Location = new System.Drawing.Point(414, 398);
             this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(77, 14);
+            this.label12.Size = new System.Drawing.Size(98, 18);
             this.label12.TabIndex = 34;
             this.label12.Text = "空格模式：";
             // 
@@ -859,7 +859,7 @@
             this.chkautodata.Location = new System.Drawing.Point(196, 430);
             this.chkautodata.Margin = new System.Windows.Forms.Padding(4);
             this.chkautodata.Name = "chkautodata";
-            this.chkautodata.Size = new System.Drawing.Size(135, 18);
+            this.chkautodata.Size = new System.Drawing.Size(170, 22);
             this.chkautodata.TabIndex = 36;
             this.chkautodata.Text = "自动保存统计数据";
             this.chkautodata.UseVisualStyleBackColor = true;
@@ -871,7 +871,7 @@
             this.cheuseregular.Location = new System.Drawing.Point(371, 430);
             this.cheuseregular.Margin = new System.Windows.Forms.Padding(4);
             this.cheuseregular.Name = "cheuseregular";
-            this.cheuseregular.Size = new System.Drawing.Size(170, 18);
+            this.cheuseregular.Size = new System.Drawing.Size(215, 22);
             this.cheuseregular.TabIndex = 37;
             this.cheuseregular.Text = "使用正则处理指法/显示";
             this.cheuseregular.UseVisualStyleBackColor = true;
@@ -911,14 +911,14 @@
             this.chksmautoadd.Location = new System.Drawing.Point(8, 430);
             this.chksmautoadd.Margin = new System.Windows.Forms.Padding(4);
             this.chksmautoadd.Name = "chksmautoadd";
-            this.chksmautoadd.Size = new System.Drawing.Size(135, 18);
+            this.chksmautoadd.Size = new System.Drawing.Size(170, 22);
             this.chksmautoadd.TabIndex = 40;
             this.chksmautoadd.Text = "三码自动补缺选重";
             this.chksmautoadd.UseVisualStyleBackColor = true;
             // 
             // ConfigFrm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(644, 520);
             this.Controls.Add(this.chksmautoadd);

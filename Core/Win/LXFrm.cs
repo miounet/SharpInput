@@ -126,9 +126,11 @@ namespace Core.Win
                 tszqltxt.Text = Math.Round(((richTextBox1.Text.Length - (double)cwzs) / richTextBox1.Text.Length) * 100, 2).ToString();
 
                 jstxt.Text = Math.Round(Win.WinInput.keybjnum / dl, 2).ToString();
-                mctxt.Text = Math.Round(Win.WinInput.keybjnum * 1.0 / this.richTextBox2.Text.Length * 1.0, 2).ToString();
+                if (ddzs > 0)
+                    mctxt.Text = Math.Round(Win.WinInput.keybjnum * 1.0 / ddzs * 1.0, 2).ToString();
+                else mctxt.Text = "0.0";
 
-                dayddzcount += Win.WinInput.inputdznum;
+                    dayddzcount += Win.WinInput.inputdznum;
                 daydccount += Win.WinInput.inputcznum;
                 daydczscount += Win.WinInput.inputczsnum;
                 bclxdczs += Win.WinInput.inputczsnum;
@@ -163,7 +165,22 @@ namespace Core.Win
                     bclxdczs = 0;
                     Clipboard.SetText(bccjtxt);
                     timer1.Enabled = false;
+
+                    //加成绩
+                    string[] cjar = new string[9];
+                    cjar[0] = DateTime.Now.ToString();
+                    cjar[1] = (double.Parse(tszqltxt.Text) < 100 ? Math.Round(double.Parse(tsspeed.Text) * double.Parse(tszqltxt.Text) / 100.0, 2) + "/" : "") + tsspeed.Text;
+                    cjar[2] = jstxt.Text;
+                    cjar[3] = mctxt.Text;
+                    cjar[4] = this.richTextBox1.Text.Length.ToString();
+                    cjar[5] = (testzs - this.richTextBox1.Text.Length).ToString();
+                    cjar[6] = tszqltxt.Text + "%";
+                    cjar[7] = Math.Round((1 - ((this.richTextBox1.Text.Length - bclxdczs) * 1.0 / this.richTextBox1.Text.Length)) * 100, 2) + "%";
+                    cjar[8] = jstxt.Text;
+                    dataGridView1.Rows.Insert(0,cjar);
+                    dataGridView1.Rows[0].Selected = true;
                 }
+               
             }
             catch { }
         }
@@ -683,7 +700,7 @@ namespace Core.Win
         }
 
 
-
+        private int ddzs = 0;
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             if (oldtestzs == 0 || oldtestzs < richTextBox2.TextLength)
@@ -697,6 +714,8 @@ namespace Core.Win
             {
                 if (richTextBox2.TextLength > 0)
                 {
+                    if (this.richTextBox2.Text.Length > ddzs)
+                        ddzs = this.richTextBox2.Text.Length;
 
                     if (startdate == null)
                     {
@@ -758,6 +777,7 @@ namespace Core.Win
                 }
                 else
                 {
+                    ddzs = 0;
                     richTextBox1.Select(0, 1);
                     if (richTextBox1.SelectionBackColor == System.Drawing.Color.Red)
                         cwzs = cwzs - 1;

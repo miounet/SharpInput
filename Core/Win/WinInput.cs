@@ -832,7 +832,10 @@ namespace Core.Win
                     Cache.VDown.time = MyKeyboardHookStruct.time;
                     keyData = (Keys)Cache.VDown.vkCode;
                 }
-
+                //if (keyData == Keys.Oem4)
+                //{
+                //    keyData = Keys.VolumeDown;
+                //}
                 string keystring = string.Empty;
 
                 #region 处理键盘事件
@@ -900,11 +903,11 @@ namespace Core.Win
                         if (!InputMode.OpenAltSelect && keyData != Keys.RWin)
                             Input.IsPressWin = true;
                     }
-                    if (keyData == Keys.LMenu || keyData == Keys.RMenu)
-                    {
-                        if (!InputMode.OpenAltSelect && keyData != Keys.RMenu)
-                            Input.IsPressAlt = true;
-                    }
+                    //if (keyData == Keys.LMenu || keyData == Keys.RMenu)
+                    //{
+                    //    if (!InputMode.OpenAltSelect && keyData != Keys.RMenu)
+                    //        Input.IsPressAlt = true;
+                    //}
                     #endregion
 
                     if (Input.IsPressCtrl && keyData == Keys.Delete)
@@ -970,9 +973,7 @@ namespace Core.Win
                     keyques.MyKeyboardHookStruct = MyKeyboardHookStruct;
 
                     SendKeyToNex = UserOnKeyDown(keyData);
-                    if ((keyData == Keys.LMenu || keyData == Keys.RMenu
-                        || keyData == Keys.LWin || keyData == Keys.RWin
-                        || keyData == Keys.VolumeDown || keyData == Keys.VolumeUp
+                    if (( keyData == Keys.VolumeDown || keyData == Keys.VolumeUp
                         ) && InputMode.OpenAltSelect)
                         SendKeyToNex = 1;
                     if (SendKeyToNex == 1)
@@ -1090,9 +1091,7 @@ namespace Core.Win
                         openTSKey = true;
                         Input.IsPressCtrl = false;
                     }
-                    if ((keyData == Keys.RMenu || keyData == Keys.LMenu
-                        || keyData == Keys.LWin || keyData == Keys.RWin
-                        || keyData == Keys.VolumeDown || keyData == Keys.VolumeUp)
+                    if ((  keyData == Keys.VolumeDown || keyData == Keys.VolumeUp)
                         && InputMode.OpenAltSelect)
                     {
                         //openTSKey = true;
@@ -1101,9 +1100,7 @@ namespace Core.Win
                         Input.IsPressWin = false;
 
                     }
-                    else if ((keyData == Keys.RMenu || keyData == Keys.LMenu
-                        || keyData == Keys.LWin || keyData == Keys.RWin
-                        || keyData == Keys.VolumeDown || keyData == Keys.VolumeUp)
+                    else if ((  keyData == Keys.VolumeDown || keyData == Keys.VolumeUp)
                         && !InputMode.OpenAltSelect)
                     {
                         openTSKey = true;
@@ -1134,9 +1131,7 @@ namespace Core.Win
                         InputStatusFrm.SendText(keystring, "", Input.IsChinese == 2);
                         return 1;
                     }
-                    else if ((keyData == Keys.LMenu || keyData == Keys.RMenu
-                        || keyData == Keys.LWin || keyData == Keys.RWin
-                        || keyData == Keys.VolumeDown || keyData == Keys.VolumeUp) && InputMode.OpenAltSelect && Input.isActiveInput) return 1;
+                    else if (( keyData == Keys.VolumeDown || keyData == Keys.VolumeUp) && InputMode.OpenAltSelect && Input.isActiveInput) return 1;
                     else
                         return CallNextHookEx(hKeyboardHook, nCode, wParam, lParam);
 
@@ -1149,9 +1144,7 @@ namespace Core.Win
                 else if (SendKeyToNex == 0)
                 {
                     if (keyData == Keys.Back) InputStatusFrm.zdzjstr = string.Empty;
-                    if ((keyData == Keys.LMenu || keyData == Keys.RMenu
-                        || keyData == Keys.LWin || keyData == Keys.RWin
-                        || keyData == Keys.VolumeDown || keyData == Keys.VolumeUp) && InputMode.OpenAltSelect
+                    if (( keyData == Keys.VolumeDown || keyData == Keys.VolumeUp) && InputMode.OpenAltSelect
                         && Input.isActiveInput) return 1;
                     else
                         return CallNextHookEx(hKeyboardHook, nCode, wParam, lParam);
@@ -1346,18 +1339,17 @@ namespace Core.Win
                     srspace = true;
 
                 }
-                else if (_lkey.KeyData == Keys.LMenu || _lkey.KeyData == Keys.LWin || _lkey.KeyData == Keys.RMenu || _lkey.KeyData == Keys.RWin
-                    || _lkey.KeyData == Keys.VolumeDown || _lkey.KeyData == Keys.VolumeUp)
+                else if ( _lkey.KeyData == Keys.VolumeDown || _lkey.KeyData == Keys.VolumeUp)
                 {
                     if (!Input.IsPressLAlt)
-                        Input.IsPressLAlt = (_lkey.KeyData == Keys.LMenu || _lkey.KeyData == Keys.LWin || _lkey.KeyData == Keys.VolumeDown);
+                        Input.IsPressLAlt = (_lkey.KeyData == Keys.VolumeDown);
                     else if (_lkey.KeyData == Keys.VolumeDown)
                     {
                         Input.IsPressRAlt = true;
                         srspace = true;
                     }
                     if (!Input.IsPressRAlt)
-                        Input.IsPressRAlt = (_lkey.KeyData == Keys.RMenu || _lkey.KeyData == Keys.RWin || _lkey.KeyData == Keys.VolumeUp);
+                        Input.IsPressRAlt = (_lkey.KeyData == Keys.VolumeUp);
                     else if (_lkey.KeyData == Keys.VolumeUp)
                     {
                         Input.IsPressLAlt = true;
@@ -2877,13 +2869,13 @@ namespace Core.Win
                 return;
             }
 
-            TrayIcon.Text = "速录宝3.2";//鼠标移至托盘的提示文本
+            TrayIcon.Text = "速录宝3.2.1";//鼠标移至托盘的提示文本
             TrayIcon.Visible = true;
 
             //定义一个MenuItem数组，并把此数组同时赋值给ContextMenu对象 
             mnuItms = new MenuItem[14];
             mnuItms[mnuItms.Length - 14] = new MenuItem();
-            mnuItms[mnuItms.Length - 14].Text = "关于速录宝3.2";
+            mnuItms[mnuItms.Length - 14].Text = "关于速录宝3.2.1";
             mnuItms[mnuItms.Length - 14].Visible = true;
             mnuItms[mnuItms.Length - 14].Click += new System.EventHandler(this.AboutInfo);
             mnuItms[mnuItms.Length - 13] = new MenuItem();

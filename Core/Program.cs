@@ -18,7 +18,7 @@ namespace Core
     {
         public static Win.WinInput MIme = null;
  
-        public static string ProductVer = "3.2";//软件版本
+        public static string ProductVer = "3.2.1";//软件版本
 
         public class vvclase
         {
@@ -56,7 +56,7 @@ namespace Core
             //}
             //var bigc = File.ReadAllText(@"D:\work\速录宝2.0\dict\空明码宏版\MasterDit.shp", Encoding.UTF8).Replace("\r\n", "\n").Split('\n');
             //StringBuilder ssb = new StringBuilder();
-            
+
             //foreach (var item in bigc)
             //{
             //    if (item.Trim().Length == 0) continue;
@@ -100,7 +100,7 @@ namespace Core
 
             //            for (int j = 0; j < ll.Count; j++)
             //            {
-       
+
             //                temp += ll[j].Key + " ";
 
             //            }
@@ -218,7 +218,7 @@ namespace Core
 
 
             #region rime词库排序
-            //var bigc = File.ReadAllText(@"D:\soft\office\空明码并击_小狼豪\weasel-0.17.4\data\kongmingmas.dict.yaml", Encoding.UTF8).Replace("\r\n", "\n").Split('\n');
+            //var bigc = File.ReadAllText(@"D:\soft\office\空明码并击_小狼豪\weasel-0.17.4\data\kongmingma.dict.yaml", Encoding.UTF8).Replace("\r\n", "\n").Split('\n');
             //StringBuilder ssb = new StringBuilder();
             //StringBuilder ssbd = new StringBuilder();
             ////int pos = 100000000;
@@ -247,78 +247,47 @@ namespace Core
             //    }
             //}
             //File.WriteAllText(@"D:\soft\office\空明码并击_小狼豪\weasel-0.17.4\data\kongmingmascz.dict.yaml", ssb.ToString(), Encoding.UTF8);
-            //////File.WriteAllText(@"D:\soft\office\空明码并击_小狼豪\weasel-0.17.4\data\kongmingmasdz.dict.yaml", ssbd.ToString(), Encoding.UTF8);
+            ////File.WriteAllText(@"D:\soft\office\空明码并击_小狼豪\weasel-0.17.4\data\kongmingmasdz.dict.yaml", ssbd.ToString(), Encoding.UTF8);
             #endregion
 
-            #region 缩减词库
-            //Dictionary<string, long> blcp = new Dictionary<string, long>();
 
-            //var blc = File.ReadAllText(@"D:\soft\office\词库\木已成舟32万词库.txt", Encoding.UTF8).Replace("\r\n", "\n").Split('\n');
-            //foreach (var item in blc)
-            //{
-            //    if (string.IsNullOrEmpty(item)) continue;
-            //    if (item.IndexOf('	') <= 0) continue;
+            #region
 
-            //    string txt = item.Split('	')[0].Replace("？", "").Replace("。", "").Replace("！", "").Replace("；", "").Replace("，", "");
-            //    if (txt.Length < 5) continue;
-            //    if (!blcp.ContainsKey(txt))
-            //    {
-            //        blcp.Add(txt, 0);
+            //Dictionary<string, string> blcp = new Dictionary<string, string>();
 
-            //    }
-            //}
 
-            //var bigc = File.ReadAllText(@"D:\work\速录宝2.0\dict\空明码宏版\MasterDit.shp", Encoding.UTF8).Replace("\r\n", "\n").Split('\n');
+            //var bigc = File.ReadAllText(@"D:\work\速录宝2.0\dict\空明码宏版\MasterDit___多多格式.txt", Encoding.UTF8).Replace("\r\n", "\n").Split('\n');
             //StringBuilder ssb = new StringBuilder();
 
             //foreach (var item in bigc)
             //{
-            //    bool cl = true;
-            //    string txt = item.Split(' ')[0];
-            //    if (string.IsNullOrEmpty(item) || item.Trim() == "") continue;
-
-
-            //    if (txt.Length < 4) cl = false;
-
-            //    if (item.Split(' ')[1].Length == 1) cl = false;
-            //    if (item.Split(' ').Length > 1 && item.Split(' ')[1].Length == 1) cl = false;
-            //    if (txt.Substring(0, 1).ToString() == "i" || txt.Substring(0, 1).ToString() == "v" || txt.Substring(0, 1).ToString() == "u"
-            //        || txt.Substring(0, 1).ToString() == ";" || txt.Substring(0, 1).ToString() == "7" || txt.Substring(0, 1).ToString() == ":")
-            //        cl = false;
-
-
-            //    if (cl)
+            //    if (string.IsNullOrEmpty(item)) continue;
+            //    if (item.Split('	')[0].Length < 2) continue;
+            //    if (item.Split('	')[1].Length != 4) continue;
+            //    if (!blcp.ContainsKey(item.Split('	')[0]))
             //    {
-            //        string item1 = "";
+            //        blcp.Add(item.Split('	')[0], item.Split('	')[1]);
 
-            //        for (int i = 1; i < item.Split(' ').Length; i++)
-            //        {
-            //            if (item.Split(' ')[i] == "哥哥在一起")
-            //                ;
-            //            if (item.Split(' ')[i].Length > 4)
-            //            {
-            //                if (blcp.ContainsKey(item.Split(' ')[i]))
-            //                    item1 += " " + item.Split(' ')[i];
-            //            }
-            //            else
-            //                item1 += " " + item.Split(' ')[i];
-            //        }
-
-            //        if (item1.Length > 0)
-            //        {
-            //            ssb.Append(txt + " " + item1 + "\n");
-
-            //        }
             //    }
-            //    else
-            //    {
-            //        ssb.Append(item + "\n");
 
+
+
+            //}
+
+            //var blc = File.ReadAllText(@"D:\work\srkmm\六万标准库列表.txt", Encoding.UTF8).Replace("\r\n", "\n").Split('\n');
+            //foreach (var item in blc)
+            //{
+            //    if (string.IsNullOrEmpty(item)) continue;
+
+            //    if (blcp.ContainsKey(item))
+            //    {
+
+            //        ssb.Append(item + "\t" + blcp[item] + "\r\n");
             //    }
             //}
-            //File.WriteAllText(@"D:\work\速录宝2.0\dict\空明码宏版\MasterDit_s1.shp", ssb.ToString(), Encoding.UTF8);
-
+            //File.WriteAllText(@"D:\work\srkmm\六万标准库列表_编码.txt", ssb.ToString(), Encoding.UTF8);
             #endregion
+
             Win.Login login = new Win.Login();
             login.BackgroundImage = System.Drawing.Image.FromFile(System.IO.Path.Combine(Application.StartupPath, "login.png"));
             login.Wait = true;
