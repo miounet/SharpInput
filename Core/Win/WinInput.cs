@@ -2869,13 +2869,13 @@ namespace Core.Win
                 return;
             }
 
-            TrayIcon.Text = "速录宝3.2.1";//鼠标移至托盘的提示文本
+            TrayIcon.Text = "速录宝3.2.2";//鼠标移至托盘的提示文本
             TrayIcon.Visible = true;
 
             //定义一个MenuItem数组，并把此数组同时赋值给ContextMenu对象 
             mnuItms = new MenuItem[14];
             mnuItms[mnuItms.Length - 14] = new MenuItem();
-            mnuItms[mnuItms.Length - 14].Text = "关于速录宝3.2.1";
+            mnuItms[mnuItms.Length - 14].Text = "关于速录宝3.2.2";
             mnuItms[mnuItms.Length - 14].Visible = true;
             mnuItms[mnuItms.Length - 14].Click += new System.EventHandler(this.AboutInfo);
             mnuItms[mnuItms.Length - 13] = new MenuItem();
