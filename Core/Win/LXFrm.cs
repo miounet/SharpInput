@@ -161,9 +161,7 @@ namespace Core.Win
                           + (toolStripTextBox3.Text.Trim().Length > 0 ? " 输入法:" + toolStripTextBox3.Text.Trim() : "");
                     bccjtxt += " 校检:" + Core.Comm.Security.MD5EncryptTo16(Core.Comm.Security.GetMD5(bccjtxt));
                     bccjtxt += " 速录宝v" + Program.ProductVer;
-                    Win.WinInput.keybjnum = 0;
-                    bclxdczs = 0;
-                    Clipboard.SetText(bccjtxt);
+
                     timer1.Enabled = false;
 
                     //加成绩
@@ -177,8 +175,12 @@ namespace Core.Win
                     cjar[6] = tszqltxt.Text + "%";
                     cjar[7] = Math.Round((1 - ((this.richTextBox1.Text.Length - bclxdczs) * 1.0 / this.richTextBox1.Text.Length)) * 100, 2) + "%";
                     cjar[8] = jstxt.Text;
+                    Win.WinInput.keybjnum = 0;
+                    bclxdczs = 0;
+                    Clipboard.SetText(bccjtxt);
                     dataGridView1.Rows.Insert(0,cjar);
                     dataGridView1.Rows[0].Selected = true;
+               
                 }
                
             }
